@@ -8,7 +8,7 @@ body {
     padding: 0; /* Remove default body padding */
 }
 .background-container {
-    background-image: url('homepageBackgroundImg1.jpg');
+    background-image: url('Images\homepageBackgroundImg1.jpg');
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center top;

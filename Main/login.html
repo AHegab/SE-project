@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="favIcon.jpg" href="favIcon.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Modern Login Page | AsmrProg</title>
+    <link rel="stylesheet" href="styleLogin.css">
+    <title> Login Page</title>
 </head>
 <body>
 
@@ -26,6 +27,19 @@
                 <input type="text" class="form-control mb-2" placeholder="Name">
                 <input type="email" class="form-control mb-2" placeholder="Email">
                 <input type="password" class="form-control mb-3" placeholder="Password">
+                <input type="Birthday" class="form-control mb-3" placeholder="DD/MM/YYYY">
+                <select name="continent" id="continent">
+
+                    <option value="" disabled selected>Select a continent</option>
+                    <option value="AF">Africa</option>
+                    <option value="AN">Antarctica</option>
+                    <option value="AS">Asia</option>
+                    <option value="EU">Europe</option>
+                    <option value="NA">North America</option>
+                    <option value="OC">Oceania</option>
+                    <option value="SA">South America</option>
+
+                </select>
                 <button class="btn btn-primary btn-block">Sign Up</button>
             </form>
         </div>
@@ -53,7 +67,7 @@
                     <button class="btn btn-link hidden" id="login">Sign In</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Hello, Friend!</h1>
+                    <h1>Hello, Driver!</h1>
                     <p>Register with your personal details to use all site features</p>
                     <button class="btn btn-link hidden" id="register">Sign Up</button>
                 </div>
@@ -66,3 +80,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<!--test-->

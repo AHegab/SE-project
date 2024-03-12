@@ -1,0 +1,76 @@
+
+
+body {
+  
+    
+    font-family: '911 Porscha', sans-serif; 
+    margin: 0; 
+    padding: 0; /* Remove default body padding */
+}
+.background-container {
+    background-image: url('Images\homepageBackgroundImg1.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center top;
+    min-height: 100vh; /* Ensure the container covers the full viewport height */
+    position: relative; /* Add position relative to allow absolute positioning */
+}
+
+.logo-container {
+    position: absolute;
+    top: 3px; /* Adjust top position */
+    left: 20px; /* Adjust left position */
+}
+.sign-in-container {
+    position: absolute;
+    bottom: 20px; /* Adjust bottom position */
+    right: 20px; /* Adjust right position */
+}
+
+.custom-signin-btn {
+    background-color: rgba(128, 0, 0, 0.9); /* Reddish color with 50% opacity */
+    color: black; /* Text color */
+    border-color: transparent; /* Remove border color */
+}
+
+.custom-signin-btn:hover {
+    background-color: rgba(128, 0, 0, 0.8); /* Darken the background color on hover */
+}
+
+.custom-signin-btn:focus,
+.custom-signin-btn:active {
+    background-color: rgba(128, 0, 0, 0.5); /* Maintain the background color on click */
+    outline: none; /* Remove the default focus outline */
+}
+.experience-container {
+    position: absolute;
+    top: 40%; /* Adjust top position */
+    left: 20px; /* Adjust left position */
+    color: red;
+}
+.experience-container h1 {
+    margin-bottom: 0; 
+    color: black;
+}
+.experience-container h2 {
+    margin-top: 0; 
+}
+
+.navbar-brand {
+    width: 100%;
+    text-align: center;
+}
+
+.navbar-brand {
+    margin: 0 auto;
+    display: table;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.porsche-text {
+    font-family: '911 Porscha', sans-serif;
+}

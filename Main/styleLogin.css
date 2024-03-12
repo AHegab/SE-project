@@ -8,8 +8,8 @@
 }
 
 body{
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+
+    background: linear-gradient(to right , #464C47, #000000);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,7 +18,7 @@ body{
 }
 
 .container{
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
@@ -47,8 +47,8 @@ body{
 }
 
 .container button{
-    background-color: #512da8;
-    color: #fff;
+    background-color: #A43131;
+    color: #000000;
     font-size: 12px;
     padding: 10px 45px;
     border: 1px solid transparent;
@@ -76,7 +76,7 @@ body{
 }
 
 .container input{
-    background-color: #aa0a0a;
+    background-color: #eee;
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
@@ -155,15 +155,34 @@ body{
     z-index: 1000;
 }
 
+.select{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+}
+
+
+select:focus {
+    border-color: #66afe9;
+}
 .container.active .toggle-container{
     transform: translateX(-100%);
     border-radius: 0 150px 100px 0;
 }
 
 .toggle{
-    background-color: hsl(258, 58%, 42%);
+    background-color: #C29049;
     height: 100%;
-    background: linear-gradient(to right, #c0785c, #512da8);
+    background: linear-gradient(to center, #A43131, #464C47);
     color: #fff;
     position: relative;
     left: -100%;
