@@ -1,14 +1,14 @@
 
 
 body {
-  
+
     
     font-family: '911 Porscha', sans-serif; 
     margin: 0; 
     padding: 0; /* Remove default body padding */
 }
 .background-container {
-    background-image: url('Images\homepageBackgroundImg1.jpg');
+    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4635bcd4-4a1d-4e83-bbe4-9edf40e125d0/dbt1iuc-dea83e16-c77f-4f43-9f0d-4d958173b50f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ2MzViY2Q0LTRhMWQtNGU4My1iYmU0LTllZGY0MGUxMjVkMFwvZGJ0MWl1Yy1kZWE4M2UxNi1jNzdmLTRmNDMtOWYwZC00ZDk1ODE3M2I1MGYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.x4CkCFgIlPPp83RIyX0bxgT1A-F0eQpF8-KE0YY0RZY');
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center top;
@@ -17,6 +17,7 @@ body {
 }
 
 .logo-container {
+    
     position: absolute;
     top: 3px; /* Adjust top position */
     left: 20px; /* Adjust left position */
@@ -56,20 +57,29 @@ body {
     margin-top: 0; 
 }
 
-.navbar-brand {
-    width: 100%;
-    text-align: center;
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 .navbar-brand {
-    margin: 0 auto;
-    display: table;
+    margin-right: auto; /* Push the logo to the left */
 }
 
-.navbar-nav {
-    display: flex;
-    align-items: center;
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
 }
+
+
+
+
+
+
+
 
 .porsche-text {
     font-family: '911 Porscha', sans-serif;

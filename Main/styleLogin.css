@@ -227,3 +227,30 @@ select:focus {
 .container.active .toggle-right{
     transform: translateX(200%);
 }
+
+.navbar-brand {
+    width: 100%;
+    text-align: center;
+}
+
+.navbar-brand {
+    margin: 0 auto;
+    display: table;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+.navbar {
+    position: relative; /* Fixed position so it stays in place while scrolling */
+    top: 0%; /* Adjust this value as needed */
+    right: 0%; /* Adjust this value as needed */
+    left: 0%;
+}
+
+
+
+.porsche-text {
+    font-family: '911 Porscha', sans-serif;
+}
