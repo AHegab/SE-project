@@ -1,9 +1,6 @@
-
-
 body {
-  
-    font-family: '911 Porscha', sans-serif; 
-    margin: 0; 
+    font-family: '911 Porscha', sans-serif;
+    margin: 0;
     padding: 0; /* Remove default body padding */
 }
 
@@ -12,48 +9,60 @@ body {
     top: 50%;
     left: 70%;
     transform: translate(-50%, -50%);
-    z-index: 10; 
+    z-index: 10;
 }
 .info-rectangle {
-    background-color: #343A40; 
+    background-color: #343A40;
     color: white;
     padding: 20px;
-    width: 700px; 
-    height: 100vh; 
+    width: 40%;
+    height: 100vh;
     position: fixed;
-    left: 0px; 
+    left: 0px;
     top: 0;
-    z-index: 1000; 
-    overflow-y: auto; 
-    overflow-x: hidden; 
-    box-sizing: border-box; 
+    z-index: 1000;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 .info-rectangle h2 {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .info-rectangle p {
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 
 
 .background-container {
-    background-image: url('Images\homepageBackgroundImg1.jpg');
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center top;
-    min-height: 100vh; /* Ensure the container covers the full viewport height */
-    position: relative; /* Add position relative to allow absolute positioning */
+    background-color: black;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100%;/* Set height to 100% of viewport height */
 }
-.background-container {
-    background-image: url('Images\homepageBackgroundImg1.jpg');
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center top;
-    min-height: 100vh; /* Ensure the container covers the full viewport height */
-    position: relative; /* Add position relative to allow absolute positioning */
+
+.carousel-container {
+    /* Set max width for the container */
+    align-items: stretch;
+    margin: auto; /* Center horizontally */
+    
 }
+
+.carousel-inner {
+    
+    margin-top: 30%;
+}
+
+.carousel-item {
+    align-items: stretch;
+    margin: auto;
+    
+}
+
+
+
 
 .logo-container {
     position: absolute;
@@ -88,27 +97,13 @@ body {
     color: red;
 }
 .experience-container h1 {
-    margin-bottom: 0; 
+    margin-bottom: 0;
     color: black;
 }
 .experience-container h2 {
-    margin-top: 0; 
+    margin-top: 0;
 }
 
-.navbar-brand {
-    width: 100%;
-    text-align: center;
-}
-
-.navbar-brand {
-    margin: 0 auto;
-    display: table;
-}
-
-.navbar-nav {
-    display: flex;
-    align-items: center;
-}
 
 .porsche-text {
     font-family: '911 Porscha', sans-serif;
@@ -117,4 +112,21 @@ body {
 
 .container.active .toggle-right{
     transform: translateX(200%);
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.navbar-brand {
+    margin-right: auto; /* Push the logo to the left */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
 }
