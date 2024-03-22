@@ -1,137 +1,3 @@
-body {
-    font-family: '911 Porscha', sans-serif;
-    margin: 0;
-    padding: 0; /* Remove default body padding */
-}
-
-.overlay-image {
-    position: absolute;
-    top: 50%;
-    left: 70%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-}
-.info-rectangle {
-    background-color: #343A40;
-    color: white;
-    padding: 20px;
-    width: 40%;
-    height: 100vh;
-    position: fixed;
-    left: 0px;
-    top: 0;
-    z-index: 1000;
-    overflow-y: auto;
-    overflow-x: hidden;
-    box-sizing: border-box;
-}
-.info-rectangle h2 {
-    margin-bottom: 10px;
-}
-
-.info-rectangle p {
-    margin-bottom: 20px;
-}
-
-
-
-.background-container {
-    background-color: black;
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    height: 100%;/* Set height to 100% of viewport height */
-}
-
-.carousel-container {
-    /* Set max width for the container */
-    align-items: stretch;
-    margin: auto; /* Center horizontally */
-    
-}
-
-.carousel-inner {
-    
-    margin-top: 30%;
-}
-
-.carousel-item {
-    align-items: stretch;
-    margin: auto;
-    
-}
-
-
-
-
-.logo-container {
-    position: absolute;
-    top: 3px; /* Adjust top position */
-    left: 20px; /* Adjust left position */
-}
-.sign-in-container {
-    position: absolute;
-    bottom: 20px; /* Adjust bottom position */
-    right: 20px; /* Adjust right position */
-}
-
-.custom-signin-btn {
-    background-color: rgba(128, 0, 0, 0.9); /* Reddish color with 50% opacity */
-    color: black; /* Text color */
-    border-color: transparent; /* Remove border color */
-}
-
-.custom-signin-btn:hover {
-    background-color: rgba(128, 0, 0, 0.8); /* Darken the background color on hover */
-}
-
-.custom-signin-btn:focus,
-.custom-signin-btn:active {
-    background-color: rgba(128, 0, 0, 0.5); /* Maintain the background color on click */
-    outline: none; /* Remove the default focus outline */
-}
-.experience-container {
-    position: absolute;
-    top: 40%; /* Adjust top position */
-    left: 20px; /* Adjust left position */
-    color: red;
-}
-.experience-container h1 {
-    margin-bottom: 0;
-    color: black;
-}
-.experience-container h2 {
-    margin-top: 0;
-}
-
-
-.porsche-text {
-    font-family: '911 Porscha', sans-serif;
-}
-
-
-.container.active .toggle-right{
-    transform: translateX(200%);
-}
-
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
-.navbar-brand {
-    margin-right: auto; /* Push the logo to the left */
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-}
-
-
 
 
 *,
@@ -270,7 +136,8 @@ li {
     margin-top: 0% ;
     
 }
-#About-text {
+
+#Register-text {
     position: fixed;
     margin-left: 92%;
     transform: translateX(-50%);
@@ -278,4 +145,51 @@ li {
             
     font-family: '911 Porscha', sans-serif;
     
+}
+
+
+
+
+/* Style for form inputs */
+form {
+    max-width: 75%;
+    width: 30%;
+    margin-left: 37%;
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    z-index: 9999
+}
+
+/* Style for form labels */
+.form-group label {
+    font-weight: bolder;
+    color: #000000;
+}
+
+/* Style for form inputs */
+
+
+
+/* Style for submit button */
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(128, 0, 0, 0.5); /* Change button color */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: rgb(128, 0, 0); /* Change button color on hover */
+}
+@media only screen and (max-width: 600px) {
+    body {
+    background-color: lightblue;
+    }
 }

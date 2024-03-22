@@ -8,8 +8,9 @@
 
 
 body {
+    background-image: url("https://wallpaperaccess.com/full/361360.jpg");
     font-family: '911 Porscha', sans-serif;
-    background-color: rgb(10, 79, 226);
+    background-color: rgb(255, 0, 242);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: cover;
@@ -85,7 +86,7 @@ li {
 .sidebar-link {
     font-family: '911 Porscha', sans-serif;
     padding: .625rem 1.625rem;
-    color: black;
+    color: rgb(0, 0, 0);
     position: relative;
     display: block;
     font-size: 1rem;
@@ -128,10 +129,86 @@ li {
             margin-left: 50%;
             transform: translateX(-50%);
             z-index: 9999; /* Ensure the text is on top of other elements */
-            
+            margin-bottom: 50%;
+    font-family: '911 Porscha', sans-serif;
+    
+}
+
+#Login-text {
+    position: fixed;
+    margin-left: 95%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Ensure the text is on top of other elements */
+    
     font-family: '911 Porscha', sans-serif;
     
 }
 
 
 
+/* Style for form inputs */
+form {
+    max-width: 40%;
+    width: 30%;
+    margin-left: 42%;
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* Style for form labels */
+.form-group label {
+    font-weight: bolder;
+    color: #000000;
+}
+
+/* Style for form inputs */
+
+
+#loginForm{
+    margin-top: 10%;
+    margin-left: 40%;
+}
+/* Style for submit button */
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(128, 0, 0, 0.5); /* Change button color */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: rgb(128, 0, 0); /* Change button color on hover */
+}
+.btn-secondary{
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(128, 0, 0, 0.5); /* Change button color */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn-secondary:hover {
+    background-color: rgb(128, 0, 0); /* Change button color on hover */
+}
+
+#porsche-text {
+    position: fixed;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Ensure the text is on top of other elements */
+    color: #000000;
+    font-family: '911 Porscha', sans-serif;
+    font-size: 40px;
+    margin-top: 0% ;
+    
+}

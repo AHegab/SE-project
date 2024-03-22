@@ -165,10 +165,77 @@ li {
 
 #porsche-text {
     position: fixed;
-            margin-left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999; /* Ensure the text is on top of other elements */
+    margin-left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Ensure the text is on top of other elements */
+    color: #000000;
+    font-family: '911 Porscha', sans-serif;
+    font-size: 40px;
+    margin-top: 0% ;
+    
+}
+#Home-text {
+    position: fixed;
+    margin-left: 95%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Ensure the text is on top of other elements */
             
     font-family: '911 Porscha', sans-serif;
     
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+
+    body {
+        font-family: '911 Porscha', sans-serif;
+        background-image: url('https://www.driving.co.uk/wp-content/uploads/sites/5/2016/03/817880_75007por-a.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover; /* Ensure the background image covers the entire viewport */
+    }
+    
+
+    .wrapper {
+        flex-direction: column;
+    }
+    #sidebar {
+        position: fixed;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin-left: -100%;
+        transition: margin-left 0.3s ease;
+    }
+    .main {
+        margin-left: 0;
+    }
+    .sign-in-container {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .experience-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        text-align: center;
+        margin-top: 20px;
+    }
+    #porsche-text {
+        position: relative;
+        margin-left: 20%;
+        transform: translateX(0);
+        text-align: center;
+    }
+
+    #Home-text{
+        position: relative;
+        margin-left: 5%;
+        transform: translateX(0);
+        text-align: center;
+    }
+}
+

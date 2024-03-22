@@ -1,161 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="favIcon.jpg" href="https://i.pinimg.com/originals/46/0d/5f/460d5f3ccb4383f499a8a637b263e41d.jpg">
-    <title>Home page</title>
-    
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- 911 Porscha font -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link href="https://fonts.cdnfonts.com/css/911-porscha" rel="stylesheet">
-    
+    <link rel="stylesheet" href="styleLogin.css">
+    <title>Login </title>
+    <style>
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px; /* Adjust margin as needed */
+            margin-left: 30%
+        }
+    </style>
 </head>
-    
-    <!-- Pills navs -->
-<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-    <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
-        aria-controls="pills-login" aria-selected="true">Login</a>
-    </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab"
-        aria-controls="pills-register" aria-selected="false">Register</a>
-    </li>
-  </ul>
-  <!-- Pills navs -->
-  
-  <!-- Pills content -->
-  <div class="tab-content">
-    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-      <form>
-        <div class="text-center mb-3">
-          <p>Sign in with:</p>
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-facebook-f"></i>
-          </button>
-  
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-google"></i>
-          </button>
-  
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-twitter"></i>
-          </button>
-  
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-github"></i>
-          </button>
-        </div>
-  
-        <p class="text-center">or:</p>
-  
-        <!-- Email input -->
-        <div class="form-outline mb-4">
-          <input type="email" id="loginName" class="form-control" />
-          <label class="form-label" for="loginName">Email or username</label>
-        </div>
-  
-        <!-- Password input -->
-        <div class="form-outline mb-4">
-          <input type="password" id="loginPassword" class="form-control" />
-          <label class="form-label" for="loginPassword">Password</label>
-        </div>
-  
-        <!-- 2 column grid layout -->
-        <div class="row mb-4">
-          <div class="col-md-6 d-flex justify-content-center">
-            <!-- Checkbox -->
-            <div class="form-check mb-3 mb-md-0">
-              <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-              <label class="form-check-label" for="loginCheck"> Remember me </label>
+
+<body>
+
+    <a id="porsche-text"href="homePage.html">Porsche</a>
+    <h1 id="Login-text">login</h1>
+    <div class="wrapper">
+
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="h-100">
+                <div id="Dashboard" class="sidebar-logo">
+                    <a href="#">Dashboard</a>
+                </div>
+                <!-- Sidebar Navigation -->
+                <ul class="sidebar-nav">
+                    <li class="sidebar-item">
+                        <a href="homePage.html" class="sidebar-link">
+                            <i class="fa-solid fa-home pe-2"></i> <!-- Using the home icon -->
+                            Home
+                        </a>
+                    <li class="sidebar-item">
+                        <a href="loginPage.html" class="sidebar-link">
+                            <i class="fa-regular fa-user pe-2"></i>
+                            Profile
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="ContactUs.html" class="sidebar-link">
+                            <i class="fa-regular fa-file-lines pe-2"></i>
+                            contact us
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="about.html" class="sidebar-link">
+                            <i class="fa-solid fa-sliders pe-2"></i>
+                            About us
+                        </a>
+                    </li>
+                </ul>
+                </li>
+            </ul>
             </div>
+            
+        </aside>
+
+        <div class="main">
+          <nav class="navbar navbar-expand px-3 border-bottom">
+              <!-- Button for sidebar toggle -->
+              <button class="btn" type="button" data-bs-theme="dark">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          </nav>
+
+      
+
+        <form>
+          <div class="loginForm">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                  placeholder="email">
+              
           </div>
-  
-          <div class="col-md-6 d-flex justify-content-center">
-            <!-- Simple link -->
-            <a href="#!">Forgot password?</a>
+          <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1"
+                  placeholder="Password">
           </div>
-        </div>
-  
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-  
-        <!-- Register buttons -->
-        <div class="text-center">
-          <p>Not a member? <a href="#!">Register</a></p>
-        </div>
+          
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <label class="form-check-label" for="exampleCheck1">Don't have an account?</label>
+      
+          <a href="registerPage.html" class="btn btn-secondary">Register</a>
+          </div>
       </form>
+
+
+        <!-- Main Component -->
+      </div>
     </div>
-    <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-      <form>
-        <div class="text-center mb-3">
-          <p>Sign up with:</p>
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-facebook-f"></i>
-          </button>
-  
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-google"></i>
-          </button>
-  
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-twitter"></i>
-          </button>
-  
-          <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-github"></i>
-          </button>
-        </div>
-  
-        <p class="text-center">or:</p>
-  
-        <!-- Name input -->
-        <div class="form-outline mb-4">
-          <input type="text" id="registerName" class="form-control" />
-          <label class="form-label" for="registerName">Name</label>
-        </div>
-  
-        <!-- Username input -->
-        <div class="form-outline mb-4">
-          <input type="text" id="registerUsername" class="form-control" />
-          <label class="form-label" for="registerUsername">Username</label>
-        </div>
-  
-        <!-- Email input -->
-        <div class="form-outline mb-4">
-          <input type="email" id="registerEmail" class="form-control" />
-          <label class="form-label" for="registerEmail">Email</label>
-        </div>
-  
-        <!-- Password input -->
-        <div class="form-outline mb-4">
-          <input type="password" id="registerPassword" class="form-control" />
-          <label class="form-label" for="registerPassword">Password</label>
-        </div>
-  
-        <!-- Repeat Password input -->
-        <div class="form-outline mb-4">
-          <input type="password" id="registerRepeatPassword" class="form-control" />
-          <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-        </div>
-  
-        <!-- Checkbox -->
-        <div class="form-check d-flex justify-content-center mb-4">
-          <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-            aria-describedby="registerCheckHelpText" />
-          <label class="form-check-label" for="registerCheck">
-            I have read and agree to the terms
-          </label>
-        </div>
-  
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
-      </form>
-    </div>
-  </div>
-  <!-- Pills content -->
+
+    
+
+    <script>
+        const toggler = document.querySelector(".btn");
+        toggler.addEventListener("click", function () {
+            document.querySelector("#sidebar").classList.toggle("collapsed");
+        });
+    </script>
 </body>
+
 </html>
