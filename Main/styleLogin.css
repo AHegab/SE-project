@@ -118,11 +118,38 @@ li {
 
 /* Responsive */
 
-@media (min-width:768px) {
+@media (max-width:768px) {
     .content {
         width: auto;
     }
+
+    #porsche-text {
+        position: relative;
+        display: none;
+    }
+
+    #Login-text {
+        display: none; /* Hide the Login text on mobile */
+    }
+
+    #sidebar.collapsed {
+        margin-left: -62%; /* Ensure the sidebar covers the entire viewport */
+    }
+
+    form{
+        max-width: 80%; /* Adjust the maximum width of the form */
+        width: 70%; /* Adjust the width of the form */
+        margin: 10% auto;
+    }
+    #loginForm{
+        margin-top: 10%;
+        margin-left: 40%;
+        max-width: 80%;
+        width: 80%;
+    }
+
 }
+
 
 #porsche-text {
     position: fixed;

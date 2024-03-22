@@ -1,109 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<background>
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="favIcon.jpg" href="https://i.pinimg.com/originals/46/0d/5f/460d5f3ccb4383f499a8a637b263e41d.jpg">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="styleContact.css">
-    <title> Contact us Page</title>
-    <div class="background-container">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="container">
-              <a class="navbar-brand mx-auto porsche-text" href="index.html">Porsche</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-  
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav ml-auto">
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">Home</a>
-                      </li>
-                  </ul>
-                  <ul class="navbar-nav">
-                      <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <span class="navbar-toggler-icon"></span> <!-- Use the hamburger icon for dropdown -->
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="about.html">About</a>
-                              <a class="dropdown-item" href="contact.html">Contact</a>
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="login.html">Login</a>
-                          </div>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </nav>
-</head>
-<body>
-  <h1>CONTACT US</h1>
-  <div class = "form_container" >
-    <form class="form-horizontal" action="index.html">
-        <div class="form-group">
-          <label for="inquiry_type">Inquiry Topic :</label>
-          <select class="form-control">
-            <option>Select An Option</option>
-            <option>Models</option>
-            <option>Website</option>
-            <option>Stores</option>
-          </select>
-        </div>
-        <div class="form-group">
-        <label for="inquiry">Inquiry : </label>
-        <textarea class="form-control" id="inquiry" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="name">How Would you like to be contacted? </label>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="contact" id="email1" value="Email" checked>
-            <label class="form-check-label" for="exampleRadios1">
-              By Email
-            </label>
-            <input class="form-check-input" type="radio" name="contact" id="phone1" value="Phone">
-            <label for="exampleRadios1">
-              By Phone
-            </label>
-        </div>
-        
-        <div class="form-group">
-        <label for="name">Full Name : </label>
-        <form>
-          <div class="row">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="First name">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Last name">
-            </div>
-          </div>
-        </form>
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email">
-          </div>
-        <div class="form-group">
-          <label for="pwd">Phone Number:</label>
-            <input type="phone number" class="form-control" id="pwd" placeholder="Enter your Phone Number">
-          </div>
-          <a href="index.html">
-          <button type="submit" class="custom-signin-btn">Submit</button>
-          </a>
-    </form>
-    </div>
-    <div class = "image_container">
-      <img src="Images/image 8.png"
+    <link rel="icon" type="favIcon.jpg" href="https://i.pinimg.com/originals/46/0d/5f/460d5f3ccb4383f499a8a637b263e41d.jpg">
 
-    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://fonts.cdnfonts.com/css/911-porscha" rel="stylesheet">
+    <link rel="icon" type="favIcon.jpg" href="Images\favIcon.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <link rel="stylesheet" href="styleContact.css">
+    <title>Contact us Page</title>
+
+</head>
+
+<body>
+    <a id="porsche-text" href="homePage.html">Porsche</a>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <h1 id="contact-text">Contact_Us</h1>
+        <aside id="sidebar">
+            <div class="h-100">
+                <div id="Dashboard" class="sidebar-logo">
+                    <a href="#">Dashboard</a>
+                </div>
+                <!-- Sidebar Navigation -->
+                <ul class="sidebar-nav">
+                    <li class="sidebar-item">
+                        <a href="homePage.html" class="sidebar-link">
+                            <i class="fa-solid fa-home pe-2"></i> <!-- Using the home icon -->
+                            Home
+                        </a>
+                    <li class="sidebar-item">
+                        <a href="loginPage.html" class="sidebar-link">
+                            <i class="fa-regular fa-user pe-2"></i>
+                            Profile
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="ContactUs.html" class="sidebar-link">
+                            <i class="fa-regular fa-file-lines pe-2"></i>
+                            Contact us
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="about.html" class="sidebar-link">
+                            <i class="fa-solid fa-sliders pe-2"></i>
+                            About us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <!-- Main Component -->
+        <div class="main">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <!-- Button for sidebar toggle -->
+                <button class="btn" type="button" data-bs-theme="dark">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+
+            <div class="container">
+                <div class="image_containter">
+                    <img src="https://i.pinimg.com/564x/64/2c/a0/642ca0228775a86a07603bf294d99d6e.jpg" alt="Porsche">
+                </div>
+                <div class="form_container">
+                    <form class="form-horizontal" action="index.html">
+                        <div class="form-group">
+                            <label for="inquiry_type">Inquiry Topic :</label>
+                            <select class="form-control">
+                                <option>Select An Option</option>
+                                <option>Models</option>
+                                <option>Website</option>
+                                <option>Stores</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inquiry">Inquiry : </label>
+                            <textarea class="form-control" id="inquiry" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">How Would you like to be contacted? </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="contact" id="email1" value="Email"
+                                    checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    By Email
+                                </label>
+                                <input class="form-check-input" type="radio" name="contact" id="phone1"
+                                    value="Phone">
+                                <label for="exampleRadios1">
+                                    By Phone
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Full Name : </label>
+                                <form>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" placeholder="First name">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" placeholder="Last name">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Phone Number:</label>
+                                <input type="phone number" class="form-control" id="pwd"
+                                    placeholder="Enter your Phone Number">
+                            </div>
+                            <a href="index.html">
+                                <button type="submit" class="submitButton">Submit</button>
+                            </a>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        const toggler = document.querySelector(".btn");
+        toggler.addEventListener("click", function () {
+            document.querySelector("#sidebar").classList.toggle("collapsed");
+        });
+    </script>
+
 </body>
-</background>
+
 </html>

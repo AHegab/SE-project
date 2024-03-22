@@ -34,7 +34,7 @@
 <body>
     
   <a id="porsche-text" href="homePage.html">Porsche</a>
-  <h1 id="About-text">About</h1>
+  
   <div class="wrapper">
       <!-- Sidebar -->
       <aside id="sidebar">
@@ -82,43 +82,49 @@
       </div>
   </div>
 
-        <div>
-            <body>
-                <div class="carousel-container">
-                    <div class="container mx-auto">
-                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://www.supercars.net/blog/wp-content/uploads/2020/07/1707753-1536x864.jpg" alt="First slide">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100" src="https://wallpapercave.com/wp/wp5110260.jpg" alt="Second slide">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100" src="https://www.driving.co.uk/wp-content/uploads/sites/5/2018/11/2019-Porsche-911-Carrera-4S-04.jpg" alt="Third slide">
-                          </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-            </body>
+
+    
+
+
+  <div class="video-background">
+    <video id="myVideo" autoplay loop muted playsinline >
+        <source  src="https://media.porsche.com/mediakit/911-gt3/02-videos/02-02-footage/RCMF_992GT3_GOP_Fahrfootage_MASTER_210203_1080p25_16-9_H264.mp4" type="video/mp4">
+        
+    </video>
+</div>
+
+<!-- Main Content -->
+<div class="container-content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="who-we-are">
+                <h2 class="text-left mb-4">Who We Are</h2>
+                <p class="text-left" font-size="4vh" >Porsche is a well-known brand in the luxury sports vehicle industry, offering the ideal fusion of engineering prowess, design, and performance. This German automaker, which Ferdinand Porsche founded in 1931, has had a lasting impact on the automotive sector. Porsche has left its mark on the annals of automotive history with a number of legendary models created over the years. With a focus on some of Porsche's most important models along the way, this article seeks to give a broad picture of the company's rich history, from its modest origins to its current accomplishments.
+                    Founding and Early Years:
+                    In Stuttgart, Germany, Ferdinand Porsche—a talented engineer and car designer—founded Porsche. His goal was to build outstanding sports cars with cutting-edge technology, stunning design, and performance that would enthral enthusiasts. Porsche's early operations were mainly as an engineering and consultancy firm, helping other manufacturers realise their car designs. Notably, Porsche was instrumental in the creation of the legendary Volkswagen Beetle, which is still among the most well-known vehicles ever.In the late 1940s, Porsche started making its own sports cars in earnest. The Porsche 356 was the company's first model to go into production in 1948. Numerous versions of the 356 were produced, and they rapidly became well-liked and established the groundwork for Porsche's future success. The 356's aerodynamic shape, lightweight build, and rear-engine configuration made it a symbol of Porsche's dedication to both driving enjoyment and performance.The iconic 911, which would go on to become an automotive icon, was first shown off by Porsche in the 1960s. The 911 became well-known right away thanks to its unique appearance, rear-engine setup, and exceptional performance. The 911 changed over time, incorporating new technology while maintaining its distinctive design. The 911 is still the flagship model in the Porsche portfolio today, inspiring a new generation of sports car fans.</p>
+            </div>
         </div>
+    </div>
+</div>
+
+        
         
         
 
-        
+        <script>
+          const toggler = document.querySelector(".btn");
+          toggler.addEventListener("click", function () {
+              document.querySelector("#sidebar").classList.toggle("collapsed");
+          });
+          window.onload = function() {
+          var video = document.getElementById("myVideo");
+          video.currentTime = 16; // Set the desired starting time in seconds
+          video.play();
+          };
+
+
+      </script>
+
+      
 </body>
 </html>

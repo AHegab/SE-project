@@ -1,5 +1,4 @@
 
-
 *,
 ::after,
 ::before {
@@ -8,9 +7,9 @@
 
 
 body {
+    background-image: url("https://wallpaperaccess.com/full/361360.jpg");
     font-family: '911 Porscha', sans-serif;
-    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4635bcd4-4a1d-4e83-bbe4-9edf40e125d0/dbt1iuc-dea83e16-c77f-4f43-9f0d-4d958173b50f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ2MzViY2Q0LTRhMWQtNGU4My1iYmU0LTllZGY0MGUxMjVkMFwvZGJ0MWl1Yy1kZWE4M2UxNi1jNzdmLTRmNDMtOWYwZC00ZDk1ODE3M2I1MGYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.x4CkCFgIlPPp83RIyX0bxgT1A-F0eQpF8-KE0YY0RZY');
-    
+    background-color: rgb(255, 0, 242);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: cover;
@@ -86,7 +85,7 @@ li {
 .sidebar-link {
     font-family: '911 Porscha', sans-serif;
     padding: .625rem 1.625rem;
-    color: black;
+    color: rgb(0, 0, 0);
     position: relative;
     display: block;
     font-size: 1rem;
@@ -114,14 +113,6 @@ li {
     flex: 1;
     max-width: 100vw;
     width: 100vw;
-}
-
-/* Responsive */
-
-@media (min-width:768px) {
-    .content {
-        width: auto;
-    }
 }
 
 .sign-in-container {
@@ -202,9 +193,9 @@ li {
     #sidebar {
         position: fixed;
         width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        margin-left: -100%;
+        max-width: 50%;
+        min-width: 50;
+        margin-left: 20%;
         transition: margin-left 0.3s ease;
     }
     .main {
@@ -237,5 +228,10 @@ li {
         transform: translateX(0);
         text-align: center;
     }
+
+
 }
+
+
+
 

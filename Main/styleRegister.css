@@ -188,8 +188,39 @@ form {
 .btn-primary:hover {
     background-color: rgb(128, 0, 0); /* Change button color on hover */
 }
-@media only screen and (max-width: 600px) {
-    body {
-    background-color: lightblue;
+@media (max-width: 768px) {
+    
+@media (max-width:768px) {
+    .content {
+        width: auto;
     }
+
+    #porsche-text {
+        position: relative;
+        display: none;
+    }
+
+    #Register-text {
+        display: none; /* Hide the Login text on mobile */
+    }
+
+    #sidebar.collapsed {
+        margin-right: 0%; /* Ensure the sidebar covers the entire viewport */
+        
+    }
+
+    form{
+        max-width: 80%; /* Adjust the maximum width of the form */
+        width: 70%; /* Adjust the width of the form */
+        margin-left: 15%;
+    }
+    #loginForm{
+        margin-top: 10%;
+        margin-left: 40%;
+        max-width: 80%;
+        width: 80%;
+    }
+
+}
+
 }
