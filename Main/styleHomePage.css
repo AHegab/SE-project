@@ -68,7 +68,7 @@ li {
 }
 
 .sidebar-logo a {
-    color: #e9ecef;
+    color: #ec0707;
     font-size: 1.25rem;
     font-weight: 600;
 }
@@ -78,14 +78,14 @@ li {
 }
 
 .sidebar-header {
-    color: #e9ecef;
+    color: #ec0707;
     font-size: .75rem;
     padding: 1.5rem 1.5rem .375rem;
 }
 .sidebar-link {
     font-family: '911 Porscha', sans-serif;
     padding: .625rem 1.625rem;
-    color: rgb(0, 0, 0);
+    color: #ec0707;
     position: relative;
     display: block;
     font-size: 1rem;
