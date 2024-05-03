@@ -4,7 +4,7 @@ const mongoose=require('mongoose');
 const crypto = require('crypto');
 const port = process.env.PORT || 3001;
 require('dotenv').config();
-const Product=require('./models/product.model');
+
 const fs = require('fs');
 const path = require("path");
 const { MongoClient } = require('mongodb');
