@@ -11,16 +11,17 @@ const { MongoClient } = require('mongodb');
 const { ObjectId } = require('mongodb');
 
 // Middleware to parse JSON bodies
+
+app.use((req,res,next)=>{
+
+    console.log(`${req.method} ${req.path}`);
+});
+
+app.use(express.urlencoded({extended:false}));
 app.use(express.json());
+
+
 app.use(express.static('public/Main/',{root:__dirname}));
-console.log(express.json());
-// Path to your JSON file
-
-
-function writeToFile(filePath, data) {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 4));
-}
-
 
 const dbString='mongodb+srv://amhegab305:OXxZAZwYY3ybkbiR@porsche105.qy5cbvq.mongodb.net/?retryWrites=true&w=majority&appName=Porsche105';
 
