@@ -2,19 +2,23 @@ const express=require("express");
 
 const app=express();
 
+require('dotenv').config();
+
 const port=process.env.PORT || 3001;
+
+const fs = require('fs');
 
 const { MongoClient, ObjectId  } = require('mongodb');
 
 // Connection URI
-const uri = 'mongodb+srv://danyadanish28:80ED2bkuRgrNVLI5@softwareproject.6tbgvip.mongodb.net/?authMechanism=DEFAULT';
+const uri = 'mongodb+srv://amhegab305:OXxZAZwYY3ybkbiR@porsche105.qy5cbvq.mongodb.net/?retryWrites=true&w=majority&appName=Porsche105';
 // Database Name
-const dbName = 'Database';
+const dbName = 'Porsche';
 // Collection Name
 const collectionProd = 'Products';
 const collectionOrder = 'Orders';
 
-require('dotenv').config();
+
 
 app.listen(port,()=>{
 
@@ -22,78 +26,68 @@ app.listen(port,()=>{
 })
 
 
-app.get("/v1/api/AdminRole",(req,res)=>{
-    res.send("fetching");
-    console.log("working")
-})
-
-const fs = require('fs');
-
-const filePath = 'Json/Database.Products.json';
-const filePathOrder = 'Json/Database.Orders.json';
-
 // DISPLAY All Products
 app.get("/v1/api/Products", (req, res) => {
     try {
       // Read the contents of the JSON file synchronously
-      const jsonData = fs.readFileSync(filePath, 'utf8');
-      const products = JSON.parse(jsonData);
-  
+    const jsonData = fs.readFileSync(filePath, 'utf8');
+    const products = JSON.parse(jsonData);
+
       // Format the products array to remove the "_id" field and reorder properties
-      const formattedProducts = products.map(product => ({
+    const formattedProducts = products.map(product => ({
         make: product.make,
         model: product.model,
         category: product.category,
         color: product.color,
         gear: product.gear,
         stock: product.stock
-      }));
-  
+        }));
+
       // Send the formatted products as a response
-      res.json(formattedProducts);
-      console.log("Retrieved products:", formattedProducts);
+        res.json(formattedProducts);
+        console.log("Retrieved products:", formattedProducts);
     } catch (err) {
       // If an error occurs while reading or parsing the file, send a 500 Internal Server Error response
-      res.status(500).send("Error reading JSON file");
-      console.error("Error reading JSON file:", err);
+        res.status(500).send("Error reading JSON file");
+        console.error("Error reading JSON file:", err);
     }
-  });
+    });
 
   // DISPLAY Product with Specific ID
-  app.get("/v1/api/Product/:id", (req, res) => {
+    app.get("/v1/api/Product/:id", (req, res) => {
     try {
       // Extract the 'id' parameter from the request URL
-      const productId = req.params.id;
-  
+        const productId = req.params.id;
+
       // Read the contents of the JSON file synchronously
-      const jsonData = fs.readFileSync(filePath, 'utf8');
-      const products = JSON.parse(jsonData);
-      
+        const jsonData = fs.readFileSync(filePath, 'utf8');
+        const products = JSON.parse(jsonData);
+
       // Find the product with the corresponding id
-      const product = products.find(product => product._id.$oid === productId);
-  
+        const product = products.find(product => product._id.$oid === productId);
+        
       // If product is found, send it as a response
-      if (product) {
+        if (product) {
         res.json(product);
         console.log("Retrieved product:", product);
-      } else {
+        } else {
         // If product is not found, send a 404 Not Found response
         res.status(404).send("Product not found");
         console.log("Product not found");
-      }
+        }
     } catch (err) {
       // If an error occurs while reading or parsing the file, send a 500 Internal Server Error response
-      res.status(500).send("Error reading JSON file");
-      console.error("Error reading JSON file:", err);
+        res.status(500).send("Error reading JSON file");
+        console.error("Error reading JSON file:", err);
     }
-  });
+    });
 
   // ADD Product
   // ------------------------------
   // ------------------------------
   // ------------------------------
-  app.use(express.json());
-  app.post('/v1/api/AddProduct', async (req, res) => {
+    app.use(express.json());
+    app.post('/v1/api/AddProduct', async (req, res) => {
     const productData = req.body;
 
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -191,7 +185,7 @@ app.put('/v1/api/UpdateProduct/:productId', async (req, res) => {
   // ------------------------------
   // ------------------------------
   // Retrieve All Orders
-  app.get("/v1/api/Orders", (req, res) => {
+    pp.get("/v1/api/Orders", (req, res) => {
     try {
         // Read the contents of the JSON file synchronously
         const jsonData = fs.readFileSync(filePathOrder, 'utf8');
