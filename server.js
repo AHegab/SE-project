@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose=require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const port = process.env.PORT || 3001;
 require('dotenv').config();
 
@@ -30,7 +30,7 @@ const dbString='mongodb+srv://amhegab305:OXxZAZwYY3ybkbiR@porsche105.qy5cbvq.mon
 const client = new MongoClient(dbString);
 // app.use(express.urlencoded({extended:false}));
 
-
+const activeUser={};
 
 mongoose.connect('mongodb+srv://amhegab305:OXxZAZwYY3ybkbiR@porsche105.qy5cbvq.mongodb.net/?retryWrites=true&w=majority&appName=Porsche105')
 .then(()=>{
@@ -55,32 +55,75 @@ app.get('/homePage', (req, res) => {
     console.log("home page");
 });
 
-app.post('/loginPage',(req,res)=>{
+app.get('/login',(req,res)=>{
 
+    res.render('login');
 
 });
 
-
-app.post('/register',async(req,res)=>{
-
-    try{
-        const hashedPassword= await bcrypt.hash(req.body.password,10);
-        
-        customers.push({
-
-            username:req.body.inputUsername,
-        password:req.body.inputPassword,
-        address:req.body.inputAddress,
-        dob:req.body.inputDOB
-
-        });
-        res.redirect('/loginPage');
-
-    }catch{
-        res.redirect('/register');
+app.post('/login', async (req, res) => {
+    try {
+        const check = await client.db('Porsche').collection('Customers').findOne({ username: req.body.Username });
+        if (!check) {
+            return res.send("Username not found");
+        } else {
+            // Compare the provided password with the hashed password stored in the database
+            const isPasswordMatch = await bcrypt.compare(req.body.InputPassword1, check.password);
+            if (!isPasswordMatch) {
+                return res.status(401).send("Incorrect password");
+            } else {
+                console.log(`Message from the server: ${req.body.Username} logged in successfully`);
+                return res.send("Login successful");
+                
+            }
+        }
+    } catch (error) {
+        // Handle error
+        console.error(error);
+        res.status(500).send("Internal Server Error");
     }
-
 });
+
+app.get('/register', async (req, res) => {res.render('register')});
+app.post('/register', async (req, res) => {
+    try {
+        // Extract data from the request body
+        const { username, password, address, city, region, zip, dob } = req.body;
+
+        // Assuming you have a MongoDB client named 'client'
+        const db = client.db('Porsche');
+        const collection = db.collection('Customers');
+
+        // Check if the username already exists
+        const existingUser = await collection.findOne({ username });
+        if (existingUser) {
+            return res.status(400).send("Username already exists");
+        }
+
+        // Hash the password before saving it
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Insert the new user data into the database
+        await collection.insertOne({
+            username,
+            password: hashedPassword,
+            address,
+            city,
+            region,
+            zip,
+            dob
+        });
+
+        // Registration successful
+        res.status(201).render('login');
+        console.log(`Message from the server: ${username} registered successfully`);
+    } catch (error) {
+        // Handle error
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 //////////
 
 app.get('/v1/api/admins', async (req, res) => {
@@ -102,8 +145,8 @@ app.get('/v1/api/admins/:id', async (req, res) => {
 // Route for creating a new admin
 app.post('/v1/api/admins', async (req, res) => {
     const { username, password, department, email, phone } = req.body;
-    
-        const result = await client.db('Porsche').collection('Admins').insertOne({ username, password, department, email, phone });
+    const hashedPassword = await bcrypt.hash(password, 10);
+        const result = await client.db('Porsche').collection('Admins').insertOne({ username, password: hashedPassword, department, email, phone });
             res.status(201).json({ message: 'Admin created successfully' });
         
     
@@ -113,10 +156,10 @@ app.post('/v1/api/admins', async (req, res) => {
 app.put('/v1/api/admins/:id', async (req, res) => {
     const { username, password, department, email, phone } = req.body;
     try {
-        
+        const hashedPassword = await bcrypt.hash(password, 10);
         const result = await client.db('Porsche').collection('Admins').updateOne(
             { _id:new mongoose.Types.ObjectId(req.params.id) },
-            { $set: { username, password, department, email, phone } }
+            { $set: { username, password: hashedPassword, department, email, phone } }
         );
         res.json({ message: `${result.modifiedCount} admin(s) updated` });
     } catch (error) {
@@ -140,6 +183,7 @@ app.get('/v1/api/customers', async (req, res) => {
     res.json(customers);
 });
 
+
 app.get('/v1/api/customers/:id', async (req, res) => {
     const customerID = req.params.id;
     const customer = await client.db('Porsche').collection('Customers').findOne({ _id:new mongoose.Types.ObjectId(req.params.id) });
@@ -154,8 +198,8 @@ app.get('/v1/api/customers/:id', async (req, res) => {
 // Route for creating a new admin
 app.post('/v1/api/customers', async (req, res) => {
     const { username, password, addressName, dob, productIds } = req.body;
-    
-        const result = await client.db('Porsche').collection('Customers').insertOne({ username, password, addressName, dob, productIds });
+    const hashedPassword = await bcrypt.hash(password, 10);
+        const result = await client.db('Porsche').collection('Customers').insertOne({ username, password: hashedPassword, addressName, dob, productIds });
             res.status(201).json({ message: 'Customer created successfully' });
         
     
@@ -166,9 +210,11 @@ app.put('/v1/api/customers/:id', async (req, res) => {
     const { username, password, addressName, dob, productIds } = req.body;
     try {
         
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         const result = await client.db('Porsche').collection('Customers').updateOne(
             { _id:new mongoose.Types.ObjectId(req.params.id) },
-            { $set: { username, password, addressName, dob, productIds } }
+            { $set: { username, password: hashedPassword, addressName, dob, productIds } }
         );
         res.json({ message: `${result.modifiedCount} customer(s) updated` });
     } catch (error) {
