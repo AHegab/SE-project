@@ -4,7 +4,7 @@ const mongoose=require('mongoose');
 const bcrypt = require('bcryptjs');
 const port = process.env.PORT || 3001;
 require('dotenv').config();
-
+const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require("path");
 const { MongoClient } = require('mongodb');
@@ -61,9 +61,9 @@ app.get('/login',(req,res)=>{
 
 });
 
-app.post('/login', async (req, res) => {
+app.post('/login'/*, authenticateToken*/, async (req, res) => {
     try {
-        const check = await client.db('Porsche').collection('Customers').findOne({ username: req.body.Username });
+        const check = await client.db('Porsche').collection('Users').findOne({ username: req.body.Username });
         if (!check) {
             return res.send("Username not found");
         } else {
@@ -72,9 +72,16 @@ app.post('/login', async (req, res) => {
             if (!isPasswordMatch) {
                 return res.status(401).send("Incorrect password");
             } else {
+                // Generate JWT token
+                // const accessToken = jwt.sign({ username: req.body.Username }, process.env.ACCESS_TOKEN_SECRET);
+
                 console.log(`Message from the server: ${req.body.Username} logged in successfully`);
-                return res.send("Login successful");
-                
+                res.redirect('/index');
+                // Send the token in the response
+                // res.json({ accessToken });
+
+                // No need to wait for the setTimeout, as the response has already been sent
+                // Redirect logic should be handled on the client-side
             }
         }
     } catch (error) {
@@ -84,15 +91,33 @@ app.post('/login', async (req, res) => {
     }
 });
 
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token == null) return res.sendStatus(401); // Token missing
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403); // Token invalid
+        req.user = user;
+        next(); // Proceed to the next middleware or route handler
+    });
+}
+
+app.get('/index', (req, res) => {
+    
+    res.render('index');
+    
+});
+
+
 app.get('/register', async (req, res) => {res.render('register')});
 app.post('/register', async (req, res) => {
     try {
         // Extract data from the request body
-        const { username, password, address, city, region, zip, dob } = req.body;
+        const { username, password, address, city, region,role, zip, dob } = req.body;
 
         // Assuming you have a MongoDB client named 'client'
         const db = client.db('Porsche');
-        const collection = db.collection('Customers');
+        const collection = db.collection('Users');
 
         // Check if the username already exists
         const existingUser = await collection.findOne({ username });
@@ -110,6 +135,7 @@ app.post('/register', async (req, res) => {
             address,
             city,
             region,
+            role,
             zip,
             dob
         });
