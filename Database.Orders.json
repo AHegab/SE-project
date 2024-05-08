@@ -1,0 +1,92 @@
+[{
+  "_id": {
+    "$oid": "627a1d22f0a4f7e8ab987654"
+  },
+  "customerId": {
+    "$oid": "627a19e2f0a4f7e8ab123456"
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "627a1a56f0a4f7e8ab654321"
+      },
+      "quantity": 1,
+      "price": {
+        "$numberDecimal": "60000.00"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "627a1a56f0a4f7e8ab654322"
+      },
+      "quantity": 1,
+      "price": {
+        "$numberDecimal": "95000.00"
+      }
+    }
+  ],
+  "totalPrice": {
+    "$numberDecimal": "155000.00"
+  },
+  "status": "placed",
+  "createdAt": {
+    "$date": "2024-04-23T00:00:00.000Z"
+  },
+  "paymentDetails": {
+    "method": "Credit Card",
+    "status": "paid"
+  },
+  "shippingDetails": {
+    "address": "1234 Elm Street, Springfield, IL",
+    "deliveryDate": {
+      "$date": "2024-05-07T00:00:00.000Z"
+    }
+  },
+  "notes": "Please deliver between 9 AM and 5 PM."
+},
+{
+  "_id": {
+    "$oid": "66297558fcdc60d4aed28414"
+  },
+  "customerId": {
+    "$oid": "627a19e2f0a4f7e8ab123456"
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "627a1a56f0a4f7e8ab654323"
+      },
+      "quantity": 1,
+      "price": {
+        "$numberDecimal": "80000.00"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "627a1a56f0a4f7e8ab654324"
+      },
+      "quantity": 1,
+      "price": {
+        "$numberDecimal": "200000.00"
+      }
+    }
+  ],
+  "totalPrice": {
+    "$numberDecimal": "280000.00"
+  },
+  "status": "placed",
+  "createdAt": {
+    "$date": "2024-04-24T00:00:00.000Z"
+  },
+  "paymentDetails": {
+    "method": "Credit Card",
+    "status": "paid"
+  },
+  "shippingDetails": {
+    "address": "1234 Elm Street, Springfield, IL",
+    "deliveryDate": {
+      "$date": "2024-05-07T00:00:00.000Z"
+    }
+  },
+  "notes": "Please deliver between 9 AM and 5 PM."
+}]

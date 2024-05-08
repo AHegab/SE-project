@@ -10,15 +10,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+AhmedHegab
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
-    "dotenv": "^16.4.5",
-    "ejs": "^3.1.10",
-    "express": "^4.19.2",
+=======
+    "crypto": "^1.0.1",
+
+AhmedHegab
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.3",
-    "nodejs": "^0.0.0",
-    "nodemon": "^3.1.0"
+=======
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.3.4",
   }
 }
