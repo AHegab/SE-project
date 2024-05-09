@@ -1,0 +1,89 @@
+[{
+  "_id": {
+    "$oid": "627a19e2f0a4f7e8ab123456"
+  },
+  "username": "johnDoe123",
+  "password": "s3cr3t",
+  "address": "1234 Elm Street ",
+  "region":"IL",
+  "city":"Springfield",
+  "role":"customer",
+  "dob": {
+    "$date": "1985-07-30T00:00:00.000Z"
+  },
+  "productIds": [
+    {
+      "$oid": "627a1a56f0a4f7e8ab654321"
+    },
+    {
+      "$oid": "627a1a56f0a4f7e8ab654322"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "662973d6fcdc60d4aed2840e"
+  },
+  "username": "jporschelover345",
+  "password": "passcode",
+ "address": "345 Bark Road ",
+  "region":"LO",
+  "city":"New Orleans",
+  "role":"customer",
+  "dob": {
+    "$date": "1986-04-24T00:00:00.000Z"
+  },
+  "productIds": [
+    {
+      "$oid": "627a1a56f0a4f7e8ab654323"
+    },
+    {
+      "$oid": "627a1a56f0a4f7e8ab654324"
+    }
+  ]
+  "_id": {
+    "$oid": "627a1ac8f0a4f7e8ab789012"
+  },
+  "username": "adminPorsche",
+  "password": "adminPass",
+  "department": "Sales",
+  "email": "sales@porschedealer.com",
+  "phone": "555-1234"
+  "role":"admin"
+  
+},
+{
+  "_id": {
+    "$oid": "66297340fcdc60d4aed28409"
+  },
+  "username": "finadmin",
+  "password": "fintech",
+  "department": "Finance",
+  "email": "finance@porschedealer.com",
+  "phone": "432-5678"
+   "role":"admin"
+},
+{
+  "_id": {
+    "$oid": "66297340fcdc60d4aed2840a"
+  },
+  "username": "ceo",
+  "password": "porsche",
+  "department": "Management",
+  "email": "management@porschedealer.com",
+  "phone": "010-1235"
+   "role":"admin"
+  
+},
+{
+  "_id": {
+    "$oid": "66297340fcdc60d4aed2840b"
+  },
+  "username": "cfo",
+  "password": "moneymoney",
+  "department": "Management",
+  "email": "management@porschedealer.com",
+  "phone": "010-1236"
+  "role":"admin"
+
+}]
