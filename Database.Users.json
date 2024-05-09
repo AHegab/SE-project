@@ -8,6 +8,7 @@
   "region":"IL",
   "city":"Springfield",
   "role":"customer",
+  "zip":,
   "dob": {
     "$date": "1985-07-30T00:00:00.000Z"
   },
@@ -30,6 +31,7 @@
   "region":"LO",
   "city":"New Orleans",
   "role":"customer",
+  "zip":,
   "dob": {
     "$date": "1986-04-24T00:00:00.000Z"
   },
@@ -50,6 +52,11 @@
   "email": "sales@porschedealer.com",
   "phone": "555-1234"
   "role":"admin"
+  "address":,
+   "city":,
+   "region":,
+    "zip":,
+    "dob":
   
 },
 {
@@ -61,7 +68,12 @@
   "department": "Finance",
   "email": "finance@porschedealer.com",
   "phone": "432-5678"
-   "role":"admin"
+  "address":,
+  "region":,
+  "city":,
+  "role":"admin"
+  "zip":,
+  "dob":
 },
 {
   "_id": {
@@ -72,7 +84,12 @@
   "department": "Management",
   "email": "management@porschedealer.com",
   "phone": "010-1235"
-   "role":"admin"
+  "address":,
+  "region":,
+  "city":,
+  "role":"admin"
+  "zip":,
+    "dob":
   
 },
 {
@@ -84,6 +101,11 @@
   "department": "Management",
   "email": "management@porschedealer.com",
   "phone": "010-1236"
+  "address":,
+  "region":,
+  "city":,
   "role":"admin"
+  "zip":,
+  "dob":
 
 }]
