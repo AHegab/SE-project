@@ -8,7 +8,7 @@
   "region":"IL",
   "city":"Springfield",
   "role":"customer",
-  "zip":"62702",
+  "zip":"62702"
   "dob": {
     "$date": "1985-07-30T00:00:00.000Z"
   },
@@ -31,7 +31,7 @@
   "region":"LO",
   "city":"New Orleans",
   "role":"customer",
-  "zip":"62701",
+  "zip":"62701"
   "dob": {
     "$date": "1986-04-24T00:00:00.000Z"
   },
@@ -55,7 +55,7 @@
   "address":"2345 Cedar Drive",
    "city":"Springfield",
    "region":"IL",
-    "zip":"62704",
+    "zip":"62704"
     "dob":
   
 },
@@ -72,7 +72,7 @@
   "region":"IL",
   "city":"Springfield",
   "role":"admin"
-  "zip":"62703",
+  "zip":"62703"
   "dob":
 },
 {
@@ -88,7 +88,7 @@
   "region":"IL",
   "city":"Springfield",
   "role":"admin"
-  "zip":"62704",
+  "zip":"62704"
     "dob":
   
 },
@@ -105,7 +105,7 @@
   "region":"IL",
   "city":"Springfield",
   "role":"admin"
-  "zip":" "62701",
+  "zip":" "62701"
   "dob":
 
 }]
