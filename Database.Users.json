@@ -43,7 +43,7 @@
       "$oid": "627a1a56f0a4f7e8ab654324"
     }
   ]},
-  "_id": {
+  {"_id": {
     "$oid": "627a1ac8f0a4f7e8ab789012"
   },
   "username": "adminPorsche",
