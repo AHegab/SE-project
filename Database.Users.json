@@ -8,7 +8,7 @@
   "region":"IL",
   "city":"Springfield",
   "role":"customer",
-  "zip":"62702"
+  "zip":"62702",
   "dob": {
     "$date": "1985-07-30T00:00:00.000Z"
   },
@@ -31,7 +31,7 @@
   "region":"LO",
   "city":"New Orleans",
   "role":"customer",
-  "zip":"62701"
+  "zip":"62701",
   "dob": {
     "$date": "1986-04-24T00:00:00.000Z"
   },
@@ -50,12 +50,12 @@
   "password": "adminPass",
   "department": "Sales",
   "email": "sales@porschedealer.com",
-  "phone": "555-1234"
+  "phone": "555-1234",
   "role":"admin"
   "address":"2345 Cedar Drive",
    "city":"Springfield",
    "region":"IL",
-    "zip":"62704"
+    "zip":"62704",
     "dob":
   
 },
@@ -67,12 +67,12 @@
   "password": "fintech",
   "department": "Finance",
   "email": "finance@porschedealer.com",
-  "phone": "432-5678"
+  "phone": "432-5678",
   "address":"3456 Pine Road",
   "region":"IL",
   "city":"Springfield",
   "role":"admin"
-  "zip":"62703"
+  "zip":"62703",
   "dob":
 },
 {
@@ -83,12 +83,12 @@
   "password": "porsche",
   "department": "Management",
   "email": "management@porschedealer.com",
-  "phone": "010-1235"
+  "phone": "010-1235",
   "address":"7890 Birch Boulevard",
   "region":"IL",
   "city":"Springfield",
   "role":"admin"
-  "zip":"62704"
+  "zip":"62704",
     "dob":
   
 },
@@ -100,12 +100,12 @@
   "password": "moneymoney",
   "department": "Management",
   "email": "management@porschedealer.com",
-  "phone": "010-1236"
+  "phone": "010-1236",
   "address":"5678 Maple Avenue",
   "region":"IL",
   "city":"Springfield",
   "role":"admin"
-  "zip":" "62701"
+  "zip":" "62701",
   "dob":
 
 }]
