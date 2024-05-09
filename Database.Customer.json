@@ -4,7 +4,10 @@
   },
   "username": "johnDoe123",
   "password": "s3cr3t",
-  "addressName": "1234 Elm Street, Springfield, IL",
+  "address": "1234 Elm Street ",
+  "region":"IL",
+  "city":"Springfield",
+  "role":"customer",
   "dob": {
     "$date": "1985-07-30T00:00:00.000Z"
   },
