@@ -5,32 +5,36 @@ const bcrypt = require('bcryptjs');
 const port = process.env.PORT || 3001;
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const path = require("path");
 const { MongoClient } = require('mongodb');
 const { ObjectId } = require('mongodb');
+const bodyParser = require('body-parser');
+const productsRouter = require('./routes/products');
+const ordersRouter = require('./routes/orders');
+app.use(bodyParser.json());
 
-// Middleware to parse JSON bodies
 
-// app.use((req,res,next)=>{
+const dbString='mongodb+srv://amhegab305:OXxZAZwYY3ybkbiR@porsche105.qy5cbvq.mongodb.net/?retryWrites=true&w=majority&appName=Porsche105';
+const client = new MongoClient(dbString);
 
-//     console.log(`${req.method} ${req.path}`);
-// });
 app.use(express.static('views/', { root: __dirname }));
 
-
 app.use(express.urlencoded({extended:false}));
+
 app.use(express.json());
+
 app.set('view engine' , 'ejs')
 
 app.use(express.static('public/Main/',{root:__dirname}));
 
-const dbString='mongodb+srv://amhegab305:OXxZAZwYY3ybkbiR@porsche105.qy5cbvq.mongodb.net/?retryWrites=true&w=majority&appName=Porsche105';
+app.use('/v1/api', productsRouter(client));
 
-const client = new MongoClient(dbString);
-// app.use(express.urlencoded({extended:false}));
+//app.use('/v1/api', ordersRouter(client));
 
-const activeUser={};
+
+
+
+
+
 
 mongoose.connect('mongodb+srv://amhegab305:OXxZAZwYY3ybkbiR@porsche105.qy5cbvq.mongodb.net/?retryWrites=true&w=majority&appName=Porsche105')
 .then(()=>{
@@ -91,6 +95,12 @@ app.post('/login', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
+///
+
+
+
+///
 function generateToken(id,username,role){
     const payload ={
         id: id,
@@ -312,232 +322,3 @@ app.delete('/v1/api/customers/:id', async (req, res) => {
     res.json({ message: `${result.deletedCount} customer(s) deleted` });
 });
 
-
-
-// app.use((req,res,next)=>{
-//     console.log("middleware recieved the request");
-//     next();
-// });
-
-/////////////Ali's part:
-const uri = 'mongodb+srv://amhegab305:OXxZAZwYY3ybkbiR@porsche105.qy5cbvq.mongodb.net/?retryWrites=true&w=majority&appName=Porsche105';
-// Database Name
-const dbName = 'Porsche';
-// Collection Name
-const collectionProd = 'Products';
-const collectionOrder = 'Orders';
-
-
-app.post('/v1/api/Product', async (req, res) => {
-    
-    const {category,stock,color,gear,make,model} = req.body;
-    //const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-    try {
-        
-
-        const result = await client.db('Porsche').collection('Products').insertOne({category,stock,color,gear,make,model});
-
-        res.status(201).json({ message: 'Product added successfully', productId: result.insertedId });
-    } catch (error) {
-        console.error('Error adding product:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    } 
-});
-
-
-app.delete('/v1/api/Product/:productId', async (req, res) => {
-    const productId = req.params.productId;
-
-    //const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-    try {
-        // Connect to MongoDB
-        await client.connect();
-
-        // Access the database and collection
-        const db = client.db(dbName);
-        const collection = db.collection(collectionProd);
-
-        // Delete the product from the collection
-        const result = await collection.deleteOne({ "_id": new ObjectId(productId) });
-
-        if (result.deletedCount === 1) {
-            res.status(200).json({ message: 'Product deleted successfully' });
-        } else {
-            res.status(404).json({ message: 'Product not found' });
-        }
-    } catch (error) {
-        console.error('Error deleting product:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    } finally {
-        // Close the MongoDB connection
-        await client.close();
-    }
-});
-
-
-app.put('/v1/api/Product/:productId', async (req, res) => {
-    const productId = req.params.productId;
-    const updatedProductData = req.body;
-
-    //const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-    try {
-        // Connect to MongoDB
-        await client.connect();
-
-        // Access the database and collection
-        const db = client.db(dbName);
-        const collection = db.collection(collectionProd);
-
-        // Update the product in the collection
-        const result = await collection.updateOne(
-            { "_id": new ObjectId(productId) },
-            { $set: updatedProductData }
-        );
-
-        if (result.matchedCount === 1) {
-            res.status(200).json({ message: 'Product updated successfully' });
-        } else {
-            res.status(404).json({ message: 'Product not found' });
-        }
-    } catch (error) {
-        console.error('Error updating product:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    } finally {
-        // Close the MongoDB connection
-        await client.close();
-    }
-});
-
-app.get('/v1/api/Product', async (req, res) => {
-    const product = await client.db('Porsche').collection('Products').find({}).toArray();
-    res.json(product);
-});
-
-app.get('/v1/api/Product/:id', async (req, res) => {
-    
-    const product = await client.db('Porsche').collection('Products').findOne({ _id:new mongoose.Types.ObjectId(req.params.id) });
-    
-    if (!product) {
-        return res.status(404).json({ error: "Product not found" });
-    }
-    
-    res.json(product);
-});
-
-
-app.get('/v1/api/Order', async (req, res) => {
-    const order = await client.db('Porsche').collection('Orders').find({}).toArray();
-    res.json(order);
-});
-
-app.get('/v1/api/Order/:id', async (req, res) => {
-    
-    const order = await client.db('Porsche').collection('Orders').findOne({ _id:new mongoose.Types.ObjectId(req.params.id) });
-    
-    if (!order) {
-        return res.status(404).json({ error: "Order not found" });
-    }
-    
-    res.json(order);
-});
-
-
-
-
-app.post('/v1/api/Order', async (req, res) => {
-    try {
-        // Request body contains order data
-        const orderData = req.body;
-
-        // Create a new MongoClient
-        // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-        // Connect to MongoDB
-        await client.connect();
-
-        // Access the database and collection
-        const db = client.db(dbName);
-        const collection = db.collection(collectionOrder);
-
-        // Insert the order into the collection
-        const result = await collection.insertOne(orderData);
-
-        // Send response
-        res.status(201).json({ message: 'Order added successfully', orderId: result.insertedId });
-    } catch (error) {
-        console.error('Error adding order:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    } finally {
-        // Close the MongoDB connection
-        client.close();
-    }
-});
-
-// DELETE Order
-app.delete('/v1/api/Order/:orderId', async (req, res) => {
-    const orderID = req.params.orderId;
-
-    //const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-    try {
-        // Connect to MongoDB
-        await client.connect();
-
-        // Access the database and collection
-        const db = client.db(dbName);
-        const collection = db.collection(collectionOrder);
-
-        // Delete the product from the collection
-        const result = await collection.deleteOne({ "_id": new ObjectId(orderID) });
-
-        if (result.deletedCount === 1) {
-            res.status(200).json({ message: 'Order deleted successfully' });
-        } else {
-            res.status(404).json({ message: 'Order not found' });
-        }
-    } catch (error) {
-        console.error('Error deleting order:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    } finally {
-        // Close the MongoDB connection
-        await client.close();
-    }
-});
-
-// Update Order
-app.put('/v1/api/Order/:orderId', async (req, res) => {
-    const orderId = req.params.orderId;
-    const updatedOrderData = req.body;
-
-    // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-    try {
-        // Connect to MongoDB
-        await client.connect();
-
-        // Access the database and collection
-        const db = client.db(dbName);
-        const collection = db.collection(collectionOrder);
-
-        // Update the order in the collection
-        const result = await collection.updateOne(
-            { "_id": new ObjectId(orderId) },
-            { $set: updatedOrderData }
-        );
-
-        if (result.matchedCount === 1) {
-            res.status(200).json({ message: 'Order updated successfully' });
-        } else {
-            res.status(404).json({ message: 'Order not found' });
-        }
-    } catch (error) {
-        console.error('Error updating order:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    } finally {
-        // Close the MongoDB connection
-        await client.close();
-    }
-});
