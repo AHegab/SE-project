@@ -48,31 +48,53 @@
               </div>
               <!-- Sidebar Navigation -->
               <ul class="sidebar-nav">
-                  <li class="sidebar-item">
-                      <a href="homePage.html" class="sidebar-link">
-                          <i class="fa-solid fa-home pe-2"></i> <!-- Using the home icon -->
-                          Home
-                      </a>
-                  </li>
-                  <li class="sidebar-item">
-                      <a href="loginPage.html" class="sidebar-link">
-                          <i class="fa-regular fa-user pe-2"></i>
-                          Profile
-                      </a>
-                  </li>
-                  <li class="sidebar-item">
-                      <a href="ContactUs.html" class="sidebar-link">
-                          <i class="fa-regular fa-file-lines pe-2"></i>
-                          Contact Us
-                      </a>
-                  </li>
-                  <li class="sidebar-item">
-                      <a href="about.html" class="sidebar-link">
-                          <i class="fa-solid fa-sliders pe-2"></i>
-                          About Us
-                      </a>
-                  </li>
-              </ul>
+                <li class="sidebar-item">
+                    <a href="/" class="sidebar-link">
+                        <i class="fa-solid fa-home pe-2"></i> <!-- Using the home icon -->
+                        Home
+                    </a>
+                </li>
+                <% if (userId) { %>
+                    <li class="sidebar-item">
+                        <a href="/v1/api/users/profile" class="sidebar-link">
+                            <i class="fa-regular fa-user pe-2"></i>
+                            Profile
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/ContactUs" class="sidebar-link">
+                            <i class="fa-regular fa-file-lines pe-2"></i>
+                            Contact us
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/about" class="sidebar-link">
+                            <i class="fa-solid fa-sliders pe-2"></i>
+                            About us
+                        </a>
+                    </li>
+                <% } else { %>
+                    <li class="sidebar-item">
+                        <a href="/login" class="sidebar-link">
+                            <i class="fa-regular fa-user pe-2"></i>
+                            Login
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/ContactUs" class="sidebar-link">
+                            <i class="fa-regular fa-file-lines pe-2"></i>
+                            Contact us
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/about" class="sidebar-link">
+                            <i class="fa-solid fa-sliders pe-2"></i>
+                            About us
+                        </a>
+                    </li>
+                <% } %>
+                
+            </ul>
           </div>
       </aside>
       <!-- Main Component -->

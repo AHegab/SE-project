@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* CSS styles */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        #userProfile {
+            margin-top: 20px;
+        }
+        #userProfile p {
+            margin: 10px 0;
+        }
+        /* New CSS for the home button */
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+        <div id="userProfile">
+            <% if(userInfo) { %>
+                <h2>Name: <%= userInfo.username %></h2>
+                <p>Address: <%= userInfo.address %></p>
+                <p>City: <%= userInfo.city %></p>
+                <p>Date of Birth: <%= userInfo.dob %></p>
+            <% } else { %>
+                <p>No user information available.</p>
+            <% } %>
+        </div>
+        <!-- Home button -->
+        <button class="home-button" onclick="goToHome()">Home</button>
+    </div>
+
+    <script>
+        // Function to navigate to the home page (index.ejs)
+        function goToHome() {
+            window.location.href = '/'; // Assuming the home page URL is '/'
+        }
+    </script>
+</body>
+</html>

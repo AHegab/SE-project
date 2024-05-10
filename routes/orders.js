@@ -1,5 +1,12 @@
 const express = require('express');
 const routerOrder = express.Router();
+const mongoose = require('mongoose');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+const { MongoClient } = require('mongodb');
+const { ObjectId } = require('mongodb');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 routerOrder.use(express.json());
 
 const dbName = 'Porsche';
@@ -12,7 +19,7 @@ module.exports = function(client) {
 routerOrder.get('/Order', async (req, res) => {
     const order = await client.db('Porsche').collection('Orders').find({}).toArray();
     res.json(order);
-});
+});//perfect
 
 routerOrder.get('/Order/:id', async (req, res) => {
     
@@ -23,7 +30,7 @@ routerOrder.get('/Order/:id', async (req, res) => {
     }
     
     res.json(order);
-});
+});//pefect
 
 
 
@@ -32,18 +39,12 @@ routerOrder.post('/Order', async (req, res) => {
     try {
         // Request body contains order data
         const orderData = req.body;
-
-        // Create a new MongoClient
-        // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-        // Connect to MongoDB
         await client.connect();
 
-        // Access the database and collection
         const db = client.db(dbName);
         const collection = db.collection(collectionOrder);
 
-        // Insert the order into the collection
+        
         const result = await collection.insertOne(orderData);
 
         // Send response
@@ -55,25 +56,31 @@ routerOrder.post('/Order', async (req, res) => {
         // Close the MongoDB connection
         client.close();
     }
-});
+});//perfect
 
 
 // DELETE Order
 routerOrder.delete('/Order/:orderId', async (req, res) => {
-    const orderID = req.params.orderId;
-
-    //const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
+    const orderId = req.params.orderId;
+    // console.log(orderId);
+    const updatedOrderData = req.body;
+    
     try {
-        // Connect to MongoDB
-        await client.connect();
 
-        // Access the database and collection
-        const db = client.db(dbName);
-        const collection = db.collection(collectionOrder);
+        const userId = req.cookies.info._id;
+        const order = await client.db('Porsche').collection('Orders').findOne({ _id:new mongoose.Types.ObjectId(req.params.orderId) });
+        //console.log(`order:${order}`);
+        const customerID=order.customerId;
+        
+        // console.log(customerID);
+        const userRole=req.cookies.info;
 
-        // Delete the product from the collection
-        const result = await collection.deleteOne({ "_id": new ObjectId(orderID) });
+        if(userId!=customerID || userRole.role!='Admin')
+            {
+                return res.status(403).json('User does not have access');
+            }
+
+        const result = await client.db('Porsche').collection('Orders').deleteOne({ _id:new mongoose.Types.ObjectId(req.params.orderId)});
 
         if (result.deletedCount === 1) {
             res.status(200).json({ message: 'Order deleted successfully' });
@@ -87,25 +94,32 @@ routerOrder.delete('/Order/:orderId', async (req, res) => {
         // Close the MongoDB connection
         await client.close();
     }
-});
+});//perfect
 
 // Update Order
 routerOrder.put('/Order/:orderId', async (req, res) => {
+
     const orderId = req.params.orderId;
+    // console.log(orderId);
     const updatedOrderData = req.body;
-
-    // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
+    
     try {
-        // Connect to MongoDB
-        await client.connect();
 
-        // Access the database and collection
-        const db = client.db(dbName);
-        const collection = db.collection(collectionOrder);
+        const userId = req.cookies.info._id;
+        const order = await client.db('Porsche').collection('Orders').findOne({ _id:new mongoose.Types.ObjectId(req.params.orderId) });
+        // console.log(`order:${order}`);
+        const customerID=order.customerId;
+        
+        // console.log(customerID);
+        const userRole=req.cookies.info;
+
+        if(userId!=customerID || userRole.role!='Admin')
+            {
+                return res.status(403).json('User does not have access');
+            }
 
         // Update the order in the collection
-        const result = await collection.updateOne(
+        const result =  await client.db('Porsche').collection('Orders').updateOne(
             { "_id": new ObjectId(orderId) },
             { $set: updatedOrderData }
         );
@@ -123,5 +137,5 @@ routerOrder.put('/Order/:orderId', async (req, res) => {
         await client.close();
     }
 });
-return router;
-};
+return routerOrder;
+};// perfect
