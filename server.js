@@ -73,13 +73,13 @@ app.post('/login', async (req, res) => {
                 return res.status(401).send("Incorrect password");
             } else {
                 // Generate JWT token
-                const {accessToken, refreshToken} = generateToken(req.body.ObjectID,req.body.role);
-                await saveRefreshToken(req.body.ObjectId,refreshToken)
+                const {accessToken, refreshToken} = generateToken(check._id, req.body.Username, req.body.role);
+                await saveRefreshToken(check._id, refreshToken);
 
-                console.log('Message from the server: ${req.body.Username} logged in successfully');
+                console.log(`Message from the server: ${req.body.Username} logged in successfully`);
                 
                 // Send the token in the response
-                 res.json({accessToken, refreshToken});
+                res.json({accessToken, refreshToken});
 
                 // No need to wait for the setTimeout, as the response has already been sent
                 // Redirect logic should be handled on the client-side
@@ -91,15 +91,16 @@ app.post('/login', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
-function generateToken(id,role){
+function generateToken(id,username,role){
     const payload ={
         id: id,
+        username: username,
         role: role
     };
     const sK = process.env.ACCESS_TOKEN_SECRET
     const accessOptions = {
         expiresIn: "1hr",
-        algorithm: 'HS256' 
+        algorithm: 'HS256'
 
     };
     //generate access token
@@ -107,24 +108,15 @@ function generateToken(id,role){
     const rT = process.env.REFRESH_TOKEN
     const refreshOptions ={
         expiresIn: "7d",
-        algorithm: 'HS256' 
+        algorithm: 'HS256'
 
     }
     //generate refresh token
     const refreshToken = jwt.sign(payload,rT,refreshOptions);
-    console.log(`{accessToken,refreshToken}`);
+    //console.log(`{accessToken,refreshToken}`);
     return {accessToken,refreshToken};
 }
-function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return res.sendStatus(401); // Token missing
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403); // Token invalid
-        req.user = user;
-        next(); // Proceed to the next middleware or route handler
-    });
-}
+
 //refresh token endpoint
 app.post('/token', async (req, res) => {
     const { token: refreshToken } = req.body;
@@ -267,6 +259,11 @@ app.delete('/v1/api/admins/:id', async (req, res) => {
 app.get('/v1/api/customers', async (req, res) => {
     const customers = await client.db('Porsche').collection('Customers').find({}).toArray();
     res.json(customers);
+});
+
+app.get('/v1/api/users', async (req, res) => {
+    const users = await client.db('Porsche').collection('Users').find({}).toArray();
+    res.json(users);
 });
 
 
