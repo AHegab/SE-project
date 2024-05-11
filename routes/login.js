@@ -18,18 +18,18 @@ module.exports = function(client) {
 router.post('/login', async (req, res) => {
     try {
         const secretKey = process.env.SECRET_KEY;
-        const check = await client.db('Porsche').collection('Users').findOne({ username: req.body.username });
+        const check = await client.db('Porsche').collection('Users').findOne({ username: req.body.Username });
         if (!check) {
             return res.send("Username not found");
         } else {
             // Compare the provided password with the hashed password stored in the database
-            //const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-            if (req.body.password !=check.password) {
+            const isPasswordMatch = await bcrypt.compare(req.body.InputPassword1, check.password);
+            if (!isPasswordMatch) {
                 return res.status(401).send("Incorrect password");
             } else {
                 // Generate JWT token
                 const accessToken = jwt.sign({ userId: check._id }, secretKey, { expiresIn: '15m' });
-                const refreshToken = jwt.sign({ userId: check._id }, secretKey, { expiresIn: '7d' });
+                const refreshToken = jwt.sign({ userId: check._id }, secretKey, { expiresIn: '3hr' });
 
                 // Save refresh token to the database
                 await saveRefreshToken(check._id, refreshToken);
@@ -58,10 +58,10 @@ async function saveRefreshToken(userId, token) {
         userId: userId,
         token: hashedToken,
         createdAt: new Date(),
-        expiresIn: '7d' 
+        expiresIn: '3hr' 
    });
 }
 
 
-    return router;
+    return router;
 };

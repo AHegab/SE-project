@@ -72,7 +72,7 @@ app.get('/', (req, res) => {
 
 app.get('/homePage', (req, res) => {
     const username = req.cookies.info.username; // Access username from cookie
-    console.log(req.cookies);
+    //console.log(req.cookies);
     console.log(`${username} opened the home page`);
     const info = req.cookies.info;
 
@@ -161,6 +161,7 @@ app.post('/register', async (req, res) => {
 
         // Registration successful
         res.status(201).render('login');
+        
         console.log(`Message from the server: ${username} registered successfully`);
     } catch (error) {
         // Handle error

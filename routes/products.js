@@ -1,4 +1,6 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const router = express.Router();
 router.use(express.json());
 
@@ -9,7 +11,7 @@ const collectionProd = 'Products';
 module.exports = function(client) {
     router.post('/Product', async (req, res) => {
     
-    const product=req.params.body;
+    const {category, stock ,color, gear ,make , model}=req.body;
     try {
 
         const userRole=req.cookies.info;
@@ -19,8 +21,11 @@ module.exports = function(client) {
                 return res.status(403).json('User does not have access');
             }
 
-        // Update the order in the collection
-        const result =  await client.db('Porsche').collection('Products').insertOne(product);
+            const db = client.db(dbName);
+            const collection = db.collection(collectionProd);
+    
+            
+            const result = await collection.insertOne({category, stock ,color, gear ,make , model});
     
             res.status(201).json({ message: 'Product added successfully', productId: result.insertedId });
         } catch (error) {
@@ -41,7 +46,7 @@ module.exports = function(client) {
     
         try {
             
-            const result =await client.db('Porsche').collection('Products').deleteOne({ "_id": new ObjectId(productId) });
+            const result =await client.db('Porsche').collection('Products').deleteOne({  _id:new mongoose.Types.ObjectId(req.params.productId)  });
     
             if (result.deletedCount === 1) {
                 res.status(200).json({ message: 'Product deleted successfully' });
@@ -63,7 +68,7 @@ module.exports = function(client) {
         const productId = req.params.productId;
         const updatedProductData = req.body;
         const userRole=req.cookies.info;
-        
+
         if(userRole.role!='Admin')
             {
                 return res.status(403).json('User does not have access');
@@ -72,7 +77,7 @@ module.exports = function(client) {
         try {
             
             const result =await client.db('Porsche').collection('Products').updateOne(
-                { "_id": new ObjectId(productId) },
+                {  _id:new mongoose.Types.ObjectId(req.params.productId)  },
                 { $set: updatedProductData }
             );
     
