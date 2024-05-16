@@ -1,7 +1,37 @@
-    import React from 'react';
+    import React ,{ useState, useEffect } from 'react';
     import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
     import './styleHomePage.css';
+    import axios from 'axios';
+    
     function HomePage() {
+
+            const [featuredCars, setFeaturedCars] = useState([]);
+            const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        async function fetchFeaturedCars() {
+        try {
+            const response = await axios.get('http://localhost:3001/v1/api/Product');
+            setFeaturedCars(response.data);
+        } catch (error) {
+            console.error('Error fetching featured cars:', error);
+        }
+        }
+
+        fetchFeaturedCars();
+    }, []);
+
+    useEffect(() => {
+        
+        const interval = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex === featuredCars.length - 1 ? 0 : prevIndex + 1));
+        }, 7000);
+        console.log(featuredCars);
+        // Clean up the interval on component unmount
+        return () => clearInterval(interval);
+    }, [featuredCars]);
+
+
     return (
         <div className="home-page">
         <header>
@@ -15,33 +45,16 @@
             </nav>
         </header>
         <main>
-            <section className="featured-cars">
+        <section className="featured-cars">
             <h2>Featured Cars</h2>
-            {/* Display featured cars here */}
-            <div className="car-list">
-                {/* Example car card */}
-                <div className="car-card">
-                <img src="https://cdn.vox-cdn.com/thumbor/IZ7fpJNSeEO1v2vNapVlLYlCWzc=/214x0:1037x549/1200x800/filters:focal(214x0:1037x549)/cdn.vox-cdn.com/uploads/chorus_image/image/45200072/new-ford-gt-supercar-0006.0.0.jpg" alt="Car" />
-                <h3>Car Model</h3>
-                <p>Description of the car...</p>
-                <Link to="/cars/car-id">View Details</Link>
+            <div className="carousel">
+                {featuredCars.length > 0 && (
+                <div className="frame">
+                    <img src={featuredCars[currentImageIndex].imageLink} alt={`Car ${currentImageIndex}`} />
                 </div>
-                {/* Add more car cards for other featured cars */}
+                )}
             </div>
-            </section>
-            <section className="latest-news">
-            <h2>Latest News</h2>
-            {/* Display latest news articles here */}
-            <div className="news-list">
-                {/* Example news article */}
-                <div className="news-article">
-                <h3>News Title</h3>
-                <p>Summary of the news...</p>
-                <Link to="/news/news-id">Read More</Link>
-                </div>
-                {/* Add more news articles */}
-            </div>
-            </section>
+        </section>
         </main>
         <footer>
             <p>&copy; 2024 Car Website. All rights reserved.</p>
@@ -49,5 +62,6 @@
         </div>
     );
     }
+
 
 export default HomePage;

@@ -18,12 +18,12 @@ module.exports = function(client) {
 router.post('/login', async (req, res) => {
     try {
         const secretKey = process.env.SECRET_KEY;
-        const check = await client.db('Porsche').collection('Users').findOne({ username: req.body.Username });
+        const check = await client.db('Porsche').collection('Users').findOne({ username: req.body.username });
         if (!check) {
             return res.send("Username not found");
         } else {
             // Compare the provided password with the hashed password stored in the database
-            const isPasswordMatch = await bcrypt.compare(req.body.InputPassword1, check.password);
+            const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
             if (!isPasswordMatch) {
                 return res.status(401).send("Incorrect password");
             } else {

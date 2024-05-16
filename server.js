@@ -14,13 +14,20 @@ const productsRouter = require('./routes/products');
 const ordersRouter = require('./routes/orders');
 const loginRouter = require('./routes/login');
 const usersRouter = require('./routes/users');
-
+const cors = require('cors'); 
 app.use(bodyParser.json());
 
 const dbString = 'mongodb+srv://amhegab305:OXxZAZwYY3ybkbiR@porsche105.qy5cbvq.mongodb.net/?retryWrites=true&w=majority&appName=Porsche105';
 const client = new MongoClient(dbString);
 
 app.use(express.static('views/', { root: __dirname }));
+
+app.use(cors());
+
+const corsOptions = {
+    origin: 'http://localhost:3000',
+};
+app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -127,6 +134,7 @@ app.get('/index', (req, res) => {
     res.render('index');
 
 });
+
 
 
 

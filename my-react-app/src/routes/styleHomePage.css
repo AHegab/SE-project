@@ -90,3 +90,15 @@
     margin: 0;
   }
   
+  .frame {
+    width: 1100;
+    height: 600;
+    border: 1px solid #ddd; /* Adjust border style as needed */
+    overflow: hidden;
+  }
+  
+  .frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
