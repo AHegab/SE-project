@@ -1,0 +1,21 @@
+.navbar {
+    background-color: #ffffff; /* Set background color */
+}
+
+.navbar button {
+    background-color: transparent; /* Make button transparent */
+    border: none; /* Remove button border */
+    outline: none; /* Remove button outline */
+    padding: 0; /* Remove default padding */
+    cursor: pointer; /* Set cursor to pointer */
+}
+
+.navbar button .navbar-toggler-icon {
+    font-size: 1.5rem; /* Adjust icon size */
+    color: #333333; /* Set icon color */
+}
+
+/* Style for button when hovered */
+.navbar button:hover {
+    background-color: #f0f0f0; /* Light background color */
+}

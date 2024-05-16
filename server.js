@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const port = process.env.PORT || 3001;
 require('dotenv').config();
+const path = require('path');
 const jwt = require('jsonwebtoken');
-const { MongoClient } = require('mongodb');
+const { MongoClient ,GridFSBucket} = require('mongodb');
 const { ObjectId } = require('mongodb');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -25,6 +26,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use(cookieParser());
 
 app.set('view engine', 'ejs')
@@ -39,6 +42,16 @@ app.use('', loginRouter(client));
 
 app.use('/v1/api', usersRouter(client));
 
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+//     });
+// import React from 'react';
+// import ReactDOM from 'react-dom/client';
+// import './index.css';
+// import App from './app';
+// import reportWebVitals from './reportWebVitals';
+
+// ReactDOM.render(<App />, document.getElementById('react-root'));
 
 
 
@@ -46,11 +59,15 @@ app.use('/v1/api', usersRouter(client));
 mongoose.connect(dbString)
     .then(() => {
         console.log("Server is connected to the database successfully :)");
+        console.log("You can access our homePage through here:   http://localhost:3001 ");
         app.set('mongoClient', client);
     }).catch((error) => {
         console.error(error);
     });
 
+app.get("/getData",(req,res)=>{
+    res.send("hello");
+});
 
 
 app.listen(port, () => {
@@ -62,11 +79,15 @@ app.listen(port, () => {
 
 
 app.get('/', (req, res) => {
-    // const username = req.cookies.username; // Access username from cookie
-    // console.log(`${username} opened the home page`);
+    const username = req.cookies.info.username; // Access username from cookie
+    //console.log(req.cookies);
+    console.log(`${username} opened the home page`);
+    const info = req.cookies.info;
+
     const userId = req.cookies.info ? req.cookies.info._id : null;
     res.render('index', { userId });
 });
+
 
 
 

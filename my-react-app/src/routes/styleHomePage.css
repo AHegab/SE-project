@@ -1,0 +1,92 @@
+/* styles.css */
+
+/* Reset default browser styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Body styles */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  nav ul {
+    list-style-type: none;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 1rem;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  nav ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Main styles */
+  main {
+    padding: 2rem;
+  }
+  
+  .featured-cars, .latest-news {
+    margin-bottom: 2rem;
+  }
+  
+  .car-list, .news-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .car-card, .news-article {
+    flex: 1 1 300px; /* Flexbox settings for responsive layout */
+    background-color: #f4f4f4;
+    padding: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .car-card img, .news-article img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .car-card h3, .news-article h3 {
+    margin-top: 0;
+  }
+  
+  .car-card p, .news-article p {
+    margin-bottom: 1rem;
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
