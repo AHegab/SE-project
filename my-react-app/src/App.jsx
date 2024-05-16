@@ -2,19 +2,20 @@ import React from 'react';
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 
 import Home from './routes/Home';
-import Sidebar from './routes/SideBar';
-import Navbar from './routes/NavBar';
-
+import Login from './routes/Login';
+import Header from './Header.js';
+import Footer from './Footer.js';
 
 const App = ()=> {
   return (
     <div>
         <Router>
+        <Header />
           <Routes>
           <Route path='/' exact Component={Home}></Route>
-          <Route path='/sidebar' exact Component={Sidebar}></Route>
-          <Route path='/navbar' exact Component={Navbar}></Route>
+          <Route path='/login' exact Component={Login}></Route>
           </Routes>
+          <Footer />
         </Router>
     </div>
   );

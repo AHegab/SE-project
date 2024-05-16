@@ -3,54 +3,61 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const router = express.Router();
+const cors = require('cors'); 
 router.use(express.json());
 router.use(cookieParser());
 
 
+router.use(cors());
+
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+};
+router.use(cors(corsOptions));
+
 module.exports = function(client) {
 
     
-    router.get('/login',(req,res)=>{
+//     router.get('/login',(req,res)=>{
 
-    res.render('login');
+//     res.render('login');
 
-});
+// });
 router.post('/login', async (req, res) => {
     try {
         const secretKey = process.env.SECRET_KEY;
-        const check = await client.db('Porsche').collection('Users').findOne({ username: req.body.username });
-        if (!check) {
-            return res.send("Username not found");
-        } else {
-            // Compare the provided password with the hashed password stored in the database
-            const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-            if (!isPasswordMatch) {
-                return res.status(401).send("Incorrect password");
-            } else {
-                // Generate JWT token
-                const accessToken = jwt.sign({ userId: check._id }, secretKey, { expiresIn: '15m' });
-                const refreshToken = jwt.sign({ userId: check._id }, secretKey, { expiresIn: '3hr' });
+        const { Username, InputPassword1 } = req.body;
+        const user = await client.db('Porsche').collection('Users').findOne({ username: Username });
 
-                // Save refresh token to the database
-                await saveRefreshToken(check._id, refreshToken);
-
-                console.log(`Message from the server: ${req.body.Username} logged in successfully`);
-                
-                res.cookie('accessToken', accessToken, { httpOnly: true });
-                res.cookie('refreshToken', refreshToken, { httpOnly: true });
-                check.password=undefined;
-                res.cookie('info',check,{ httpOnly: true });
-                res.redirect('/homePage');
-
-            }
+        if (!user) {
+            return res.status(404).json({ message: "Username not found" });
         }
+
+        const isPasswordMatch = await bcrypt.compare(InputPassword1, user.password);
+        if (!isPasswordMatch) {
+            return res.status(401).json({ message: "Incorrect password" });
+        }
+
+        const accessToken = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '15m' });
+        const refreshToken = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '3hr' });
+
+        await saveRefreshToken(user._id, refreshToken);
+
+        res.cookie('accessToken', accessToken, { httpOnly: true });
+        res.cookie('refreshToken', refreshToken, { httpOnly: true });
+        user.password = undefined;
+        res.cookie('info', user, { httpOnly: true });
+
+        console.log(`Message from the server: ${Username} logged in successfully`);
+
+        res.status(200).json({ message: "Login successful", redirectUrl: "/homePage" });
+
     } catch (error) {
-        // Handle error
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        res.status(500).json({ message: "Internal Server Error" });
     }
 });
-
 
 async function saveRefreshToken(userId, token) {
     const hashedToken = await bcrypt.hash(token, 10);

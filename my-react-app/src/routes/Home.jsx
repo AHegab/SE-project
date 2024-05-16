@@ -34,16 +34,7 @@
 
     return (
         <div className="home-page">
-        <header>
-            <h1>Welcome to our Car Website</h1>
-            <nav>
-            <ul>
-                <li><Link to="/cars">View All Cars</Link></li>
-                <li><Link to="/about">About Us</Link></li>
-                {/* Add more navigation links as needed */}
-            </ul>
-            </nav>
-        </header>
+        
         <main>
         <section className="featured-cars">
             <h2>Featured Cars</h2>
@@ -56,9 +47,6 @@
             </div>
         </section>
         </main>
-        <footer>
-            <p>&copy; 2024 Car Website. All rights reserved.</p>
-        </footer>
         </div>
     );
     }
