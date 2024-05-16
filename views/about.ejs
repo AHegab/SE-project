@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="icon" type="favIcon.jpg" href="https://i.pinimg.com/originals/46/0d/5f/460d5f3ccb4383f499a8a637b263e41d.jpg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://fonts.cdnfonts.com/css/911-porscha" rel="stylesheet">
+    <link rel="icon" type="favIcon.jpg" href="Images\favIcon.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="about.css">
+
+    <!-- 911 Porscha font -->
+    <link href="https://fonts.cdnfonts.com/css/911-porscha" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="C:\UNI\Semester 4\SE\Porsche\SE-project\test.png">
+    <title>About us </title>
+    <!-- react -->
+    <div id="react-root"></div>
+
+    <style>
+        .background-container {
+            background-color: black;
+        }
+        .carousel-container {
+            max-width: 800px; /* Set max width for the container */
+            margin: auto; /* Center horizontally */
+            /* Adjust margin-left and margin-right to move the container left or right */
+            margin-left: 950px; /* Move the container 50px to the right */
+            margin-top: 700px;
+}
+    </style>
+
+</head>
+<body>
+    
+  <a id="porsche-text" href="/">Porsche</a>
+  
+  <div class="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar">
+          <div class="h-100">
+              <div id="Dashboard" class="sidebar-logo">
+                  <a href="#">Dashboard</a>
+              </div>
+              <!-- Sidebar Navigation -->
+              <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="/" class="sidebar-link">
+                        <i class="fa-solid fa-home pe-2"></i> <!-- Using the home icon -->
+                        Home
+                    </a>
+                </li>
+                <% if (userId) { %>
+                    <li class="sidebar-item">
+                        <a href="/v1/api/users/profile" class="sidebar-link">
+                            <i class="fa-regular fa-user pe-2"></i>
+                            Profile
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/ContactUs" class="sidebar-link">
+                            <i class="fa-regular fa-file-lines pe-2"></i>
+                            Contact us
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/about" class="sidebar-link">
+                            <i class="fa-solid fa-sliders pe-2"></i>
+                            About us
+                        </a>
+                    </li>
+                <% } else { %>
+                    <li class="sidebar-item">
+                        <a href="/login" class="sidebar-link">
+                            <i class="fa-regular fa-user pe-2"></i>
+                            Login
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/ContactUs" class="sidebar-link">
+                            <i class="fa-regular fa-file-lines pe-2"></i>
+                            Contact us
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/about" class="sidebar-link">
+                            <i class="fa-solid fa-sliders pe-2"></i>
+                            About us
+                        </a>
+                    </li>
+                <% } %>
+                
+            </ul>
+          </div>
+      </aside>
+      <!-- Main Component -->
+      <div class="main">
+          <nav class="navbar navbar-expand px-3 border-bottom">
+              <!-- Button for sidebar toggle -->
+              <button class="btn" type="button" data-bs-theme="dark">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          </nav>
+      </div>
+  </div>
+
+
+    
+
+
+  <div class="video-background">
+    <video id="myVideo" autoplay loop muted playsinline >
+        <source  src="https://media.porsche.com/mediakit/911-gt3/02-videos/02-02-footage/RCMF_992GT3_GOP_Fahrfootage_MASTER_210203_1080p25_16-9_H264.mp4" type="video/mp4">
+        
+    </video>
+</div>
+
+<!-- Main Content -->
+<div class="container-content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="who-we-are">
+                <h2 class="text-left mb-4">Who We Are</h2>
+                <p class="text-left" font-size="4vh" >Porsche is a well-known brand in the luxury sports vehicle industry, offering the ideal fusion of engineering prowess, design, and performance. This German automaker, which Ferdinand Porsche founded in 1931, has had a lasting impact on the automotive sector. Porsche has left its mark on the annals of automotive history with a number of legendary models created over the years. With a focus on some of Porsche's most important models along the way, this article seeks to give a broad picture of the company's rich history, from its modest origins to its current accomplishments.
+                    Founding and Early Years:
+                    In Stuttgart, Germany, Ferdinand Porsche—a talented engineer and car designer—founded Porsche. His goal was to build outstanding sports cars with cutting-edge technology, stunning design, and performance that would enthral enthusiasts. Porsche's early operations were mainly as an engineering and consultancy firm, helping other manufacturers realise their car designs. Notably, Porsche was instrumental in the creation of the legendary Volkswagen Beetle, which is still among the most well-known vehicles ever.In the late 1940s, Porsche started making its own sports cars in earnest. The Porsche 356 was the company's first model to go into production in 1948. Numerous versions of the 356 were produced, and they rapidly became well-liked and established the groundwork for Porsche's future success. The 356's aerodynamic shape, lightweight build, and rear-engine configuration made it a symbol of Porsche's dedication to both driving enjoyment and performance.The iconic 911, which would go on to become an automotive icon, was first shown off by Porsche in the 1960s. The 911 became well-known right away thanks to its unique appearance, rear-engine setup, and exceptional performance. The 911 changed over time, incorporating new technology while maintaining its distinctive design. The 911 is still the flagship model in the Porsche portfolio today, inspiring a new generation of sports car fans.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+        
+        
+
+        <script>
+          const toggler = document.querySelector(".btn");
+          toggler.addEventListener("click", function () {
+              document.querySelector("#sidebar").classList.toggle("collapsed");
+          });
+          window.onload = function() {
+          var video = document.getElementById("myVideo");
+          video.currentTime = 16; // Set the desired starting time in seconds
+          video.play();
+          };
+
+
+      </script>
+
+      
+</body>
+</html>
