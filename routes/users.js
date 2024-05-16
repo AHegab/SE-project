@@ -14,14 +14,14 @@ module.exports = function(client) {
     
     router.get('/users/profile', async (req, res) => {
         const userId = req.cookies.info ? req.cookies.info._id : null;
-        console.log(userId);
+        //console.log(userId);
         try {
             if (!userId) {
                 return res.status(400).json({ error: "User ID not found in cookies" });
             }
     
             const user = await client.db('Porsche').collection('Users').findOne({ _id: new mongoose.Types.ObjectId(userId) });
-            console.log(user);
+            //console.log(user);
             if (!user) {
                 return res.status(404).json({ error: "User not found" });
             }

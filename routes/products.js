@@ -1,17 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 router.use(express.json());
 
-
+const multer = require('multer');
 const dbName = 'Porsche';
 const collectionProd = 'Products';
+const upload = multer({ dest: 'uploads/' });
+
 
 module.exports = function(client) {
-    router.post('/Product', async (req, res) => {
+    router.post('/Product',upload.single('file'), async (req, res) => {
     
-    const {category, stock ,color, gear ,make , model}=req.body;
+    const newProduct=req.body;
     try {
 
         const userRole=req.cookies.info;
@@ -23,9 +26,19 @@ module.exports = function(client) {
 
             const db = client.db(dbName);
             const collection = db.collection(collectionProd);
-    
+            const bucket = new GridFSBucket(db)
+
+            const uploadStream = bucket.openUploadStream(fileName);
             
-            const result = await collection.insertOne({category, stock ,color, gear ,make , model});
+            fs.createReadStream(filePath).pipe(uploadStream)
+            .on('error', (error) => {
+                console.error('Error uploading file:', error);
+            })
+            .on('finish', () => {
+                console.log('File uploaded successfully');
+            });
+            
+            const result = await collection.insertOne(newProduct);
     
             res.status(201).json({ message: 'Product added successfully', productId: result.insertedId });
         } catch (error) {
