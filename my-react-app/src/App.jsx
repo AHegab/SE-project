@@ -34,6 +34,7 @@ const App = ()=> {
               <Route path='/UserProfile' exact Component={UserProfile}></Route>
 
               {/* <Route path='/profile' exact Component={Profile}></Route> */}
+
               <Route path="/product/:id" element={<ProductDetailPage />} />
             </Routes>
 

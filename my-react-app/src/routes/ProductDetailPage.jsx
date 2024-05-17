@@ -20,17 +20,18 @@ const ProductDetailPage = () => {
                 console.error("Error fetching product:", error);
             }
         };
-
+    
         fetchProduct();
     }, [id]);
-
+    
     // Method to rewrite image paths
     const rewriteImagePaths = (imagePaths) => {
         return imagePaths.map((path) => {
-            // Replace backslashes with forward slashes
-            return "./" + path.replace(/\\/g, '/');
+            // Correct the path to format it properly for web usage
+            return path.replace(/^.*?\\public\\/, '/public/').replace(/\\/g, '/');
         });
     };
+    
 
     // Method to handle adding product to cart
     const addToCart = async () => {

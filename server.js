@@ -35,6 +35,8 @@ app.use(cors(corsOptions));
 app.use(express.static('views/', { root: __dirname }));
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(express.static('public/Main/', { root: __dirname }));
+app.use('/public', express.static('my-react-app/public'));
+
 
 app.set('view engine', 'ejs');
 
