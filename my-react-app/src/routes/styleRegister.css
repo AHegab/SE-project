@@ -32,14 +32,23 @@
     background: white;
     padding: 20px;
     border-radius: 10px;
+    width: 100%; /* Sets the form width to 50% of the screen */
+    max-width: 1200px; /* Maximum width of the form */
+}
+
+.form-row {
+    display: flex; /* Ensures the form groups inside are inline */
+    justify-content: space-between; /* Distributes space between the form groups */
 }
 
 .form-group {
     margin-bottom: 15px;
+    width: 48%; /* Sets each form group to take almost half the row width */
+    float: left; /* Ensures the groups stay side by side */
 }
 
 .form-control {
-    width: 100%;
+    width: 98%; /* Ensures the input takes full width of the form group */
     padding: 10px;
     margin-top: 5px;
     border-radius: 5px;

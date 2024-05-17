@@ -5,9 +5,13 @@ import "./styleRegister.css";
 
 const Register = () => {
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [address, setAddress] = useState('');
     const [dob, setDob] = useState('');
+    const [city, setCity] = useState('');
+    const [region, setRegion] = useState('');
+    const [zip, setZip] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -17,8 +21,12 @@ const Register = () => {
         try {
             const response = await axios.post('http://localhost:3001/register', {
                 username,
+                email,
                 password,
                 address,
+                city,
+                region,
+                zip,
                 dob
             });
 
@@ -35,7 +43,6 @@ const Register = () => {
     return (
         <div className="register-page">
             <div className="overlay">
-                <a id="porsche-text" href="/">Porsche</a>
                 <h1 id="register-text">Register</h1>
                 <form onSubmit={handleRegister}>
                     <div className="registerForm">
@@ -49,6 +56,18 @@ const Register = () => {
                                 placeholder="Username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="inputEmail">Email</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="email"
+                                id="inputEmail"
+                                placeholder="johndoe@gmail.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div className="form-group">
@@ -76,7 +95,43 @@ const Register = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="inputDOB">Date of Birth</label>
+                            <label htmlFor="inputCity">City</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="city"
+                                id="inputCity"
+                                placeholder="Cairo"
+                                value={city}
+                                onChange={(e) => setCity(e.target.value)}
+                            />
+                            </div>
+                            <div className="form-group">
+                            <label htmlFor="inputRegion">Region</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="region"
+                                id="inputRegion"
+                                placeholder="MENA"
+                                value={region}
+                                onChange={(e) => setRegion(e.target.value)}
+                            />
+                            </div>
+                            <div className="form-group">
+                            <label htmlFor="inputZip">Zip</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="zip"
+                                id="inputZip"
+                                placeholder="12345"
+                                value={zip}
+                                onChange={(e) => setZip(e.target.value)}
+                            />
+                            </div>
+                        <div className="form-group">
+                            <label htmlFor="inputDOB">Birthdate</label>
                             <input
                                 type="date"
                                 className="form-control"
