@@ -17,6 +17,8 @@ import PlaceOrderPage from './routes/PlaceOrderPage'
 import Admins from './routes/Admins'
 import ViewAllOrders from './routes/ViewAllOrders'
 import PastOrders from './routes/PastOrders'
+import viewAdminsReqs from './routes/ViewAdminsReqs'
+import UserRoleUpdate from './routes/UserRoleUpdate'
 const App = ()=> {
   return (
     <div>
@@ -37,8 +39,8 @@ const App = ()=> {
               <Route path='/admin' exact Component={Admins}></Route>
               <Route path='/ViewAllOrders' exact Component={ViewAllOrders}></Route>
               <Route path='/PastOrders' exact Component={PastOrders}></Route>
-              {/* <Route path='/profile' exact Component={Profile}></Route> */}
-
+              <Route path='/viewAdminsReqs' exact Component={viewAdminsReqs}></Route>
+              <Route path='/UserRoleUpdate' exact Component={UserRoleUpdate}></Route>
               <Route path="/product/:id" element={<ProductDetailPage />} />
             </Routes>
 

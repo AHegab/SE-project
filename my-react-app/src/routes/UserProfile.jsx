@@ -40,32 +40,21 @@ const UserProfile = () => {
       Cookies.remove('userInfo');
       setUserInfo(null);
       navigate('/Login');
-
     }
   };
 
   // Function to handle requesting admin status
   const handleRequestAdmin = async () => {
-    if (userInfo) {
-      try {
-        const response = await axios.post('http://localhost:3001/v1/api/request-admin', {  // Updated endpoint
-          username: userInfo.username,
-          userId: userInfo.userId
-        }, { withCredentials: true });
-        alert(response.data.message);
-      } catch (error) {
-        console.error('Error requesting admin status:', error);
-        alert('There was an error sending your request.');
-      }
-
+    try {
+      const response = await axios.post('http://localhost:3001/v1/api/request-admin', {
+        username: userInfo.username,
+        userId: userInfo.userId
+      }, { withCredentials: true });
+      alert(response.data.message);
+    } catch (error) {
+      console.error('Error requesting admin status:', error);
+      alert('There was an error sending your request.');
     }
-  };
-
-  // Function to handle requesting admin status
-  const handleRequestAdmin = () => {
-    // Perform the necessary actions to request admin status
-    // For example, you could send a request to the server to notify the admin or update the user's role in the database
-    alert('Your request to become an admin has been sent.');
   };
 
   return (
@@ -89,9 +78,7 @@ const UserProfile = () => {
           )}
           {/* Render the request admin button for customers */}
           {userInfo.role === 'Customer' && (
-
             <button className="reqAdmin-button" onClick={handleRequestAdmin}>Request Admin</button>
-
           )}
           <button className="signout-button" onClick={handleSignOut}>Sign Out</button>
           {/* Confirmation modal for sign out */}

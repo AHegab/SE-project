@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const { ObjectId } = require('mongodb');
 const bcrypt = require('bcryptjs');
 router.use(express.json());
 
@@ -96,41 +97,65 @@ module.exports = function(client) {
     });
     
     // Route for updating an admin by ID
-    router.put('/users/:id', async (req, res) => {
-        const { username, password, address, city, region,role, zip, dob } = req.body;
+    router.put('/update-role/:userId', async (req, res) => {
         try {
-            const userID =req.params.id;
-            const existingUser = await client.db('Porsche').collection('Users').findOne({ username });
-
-            if (existingUser._id!=userID) {
-                return res.status(400).send("Username already exists");
-            }
-
-            const hashedPassword = await bcrypt.hash(password, 10);
-    
-            const result = await client.db('Porsche').collection('Users').updateOne(
-                { _id:new mongoose.Types.ObjectId(req.params.id) },
-                { $set: { username,
-                            password: hashedPassword,
-                            address,
-                            city,
-                            region,
-                            role,
-                            zip,
-                            dob } }
-            );
-            res.json({ message: `${result.modifiedCount} user(s) updated` });
+          const userId = req.params.userId;
+          const { role } = req.body;
+      
+          // Convert userId to ObjectId
+          const userIdObject = new ObjectId(userId);
+      
+          // Update the user's role in the database
+          const result = await client.db('Porsche').collection('Users').updateOne(
+            { _id: userIdObject },
+            { $set: { role: role } }
+          );
+      
+          if (result.modifiedCount === 1) {
+            res.status(200).json({ message: 'User role updated successfully' });
+          } else {
+            res.status(404).json({ error: 'User not found' });
+          }
         } catch (error) {
-            console.error('Error updating customer', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+          console.error('Error updating user role:', error);
+          res.status(500).json({ error: 'Internal server error' });
         }
-    });
+      });
     //perfect
     
     router.delete('/users/:id', async (req, res) => {
         const result = await client.db('Porsche').collection('Users').deleteOne({ _id:new mongoose.Types.ObjectId(req.params.id) });
         res.json({ message: `${result.deletedCount} customer(s) deleted` });
     });
+
+
+    router.put('/update-role/:userId', async (req, res) => {
+        try {
+          const userId = req.params.userId;
+          const { role } = req.body;
+      
+          // Perform validation if necessary
+      
+          // Convert userId to ObjectId
+          const userIdObject = ObjectId(userId);
+      
+          // Update the user's role in the database
+          const result = await client.db('Porsche').collection('Users').updateOne(
+            { _id: userIdObject }, // Use userIdObject instead of userId
+            { $set: { role: role } }
+          );
+      
+          if (result.modifiedCount === 1) {
+            res.status(200).json({ message: 'User role updated successfully' });
+          } else {
+            res.status(404).json({ error: 'User not found' });
+          }
+        } catch (error) {
+          console.error('Error updating user role:', error);
+          res.status(500).json({ error: 'Internal server error' });
+        }
+      });
+
 
     return router;
 };

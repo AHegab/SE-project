@@ -22,5 +22,12 @@ module.exports = function(client) {
         }
     });
 
+    router.get("/req",async (req, res) => {
+
+        const requests = await client.db('Porsche').collection('Requests').find({}).toArray();
+                res.json(requests);
+
+    });
+
     return router;
 };
