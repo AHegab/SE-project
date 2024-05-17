@@ -13,6 +13,7 @@ import ContactUs from './routes/ContactUs';
 import AddProduct from './routes/AddProduct';
 import Register from './routes/Register';
 import FeedbackList from './routes/FeedbackList';
+import UserProfile from './routes/Profile.jsx';
 
 
 const App = ()=> {
@@ -30,6 +31,8 @@ const App = ()=> {
               <Route path='/Register' exact Component={Register}></Route>
               <Route path='/AddProduct' exact Component={AddProduct}></Route>
               <Route path='/FeedbackList' exact Component={FeedbackList}></Route>
+              <Route path='/UserProfile' exact Component={UserProfile}></Route>
+
               {/* <Route path='/profile' exact Component={Profile}></Route> */}
               <Route path="/product/:id" element={<ProductDetailPage />} />
             </Routes>
