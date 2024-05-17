@@ -1,24 +1,46 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
+import Footer from './Footer.js';
+import Header from './Header.js';
+import ProductDetailPage from './routes/ProductDetailPage';
 import Home from './routes/Home';
 import Login from './routes/Login';
-import OrdersPage from './routes/Orders'; // Ensure the correct import
-import Header from './Header.js';
-import Footer from './Footer.js';
+import Profile from "./routes/UserProfile.jsx"
+import Product from './routes/Products';
+import ContactUs from './routes/ContactUs';
+import AddProduct from './routes/AddProduct';
+import Register from './routes/Register';
+import FeedbackList from './routes/FeedbackList';
+import UserProfile from './routes/UserProfile';
 
-const App = () => {
+
+const App = ()=> {
   return (
     <div>
-      <Router>
+        <Router>
         <Header />
-        <Routes>
-          <Route path='/' exact Component={Home}></Route>
-          <Route path='/login' exact Component={Login}></Route>
-          <Route path="/orders" exact Component={OrdersPage} /> {/* Correctly specify component */}
-        </Routes>
-        <Footer />
-      </Router>
+          
+            
+            <Routes>
+              <Route path='/' exact Component={Home}></Route>
+              <Route path='/login' exact Component={Login}></Route>
+              <Route path='/Product' exact Component={Product}></Route>
+              <Route path='/ContactUs' exact Component={ContactUs}></Route>
+              <Route path='/Register' exact Component={Register}></Route>
+              <Route path='/AddProduct' exact Component={AddProduct}></Route>
+              <Route path='/FeedbackList' exact Component={FeedbackList}></Route>
+
+              <Route path='/UserProfile' exact Component={UserProfile}></Route>
+
+
+              {/* <Route path='/profile' exact Component={Profile}></Route> */}
+
+              <Route path="/product/:id" element={<ProductDetailPage />} />
+            </Routes>
+
+          <Footer />
+        </Router>
     </div>
   );
 }
