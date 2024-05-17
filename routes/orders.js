@@ -53,19 +53,11 @@ routerOrder.get('/Order/:id', async (req, res) => {
 
 
 //add order
-router.post('/addOrder', async (req, res) => {
-    const { userId, productIds, datetime, notes, total } = req.body;
+routerOrder.post('/addOrder', async (req, res) => {
+    const order = req.body;
 
     try {
-        const newOrder = new Order({
-            userId: mongoose.Types.ObjectId(userId),
-            productIds: productIds.map(id => mongoose.Types.ObjectId(id)),
-            datetime: new Date(datetime),
-            notes,
-            total
-        });
-
-        await newOrder.save();
+        const newOrder = await client.db('Porsche').collection('Orders').insertOne(order);
         res.status(201).json({ message: 'Order created successfully', order: newOrder });
     } catch (error) {
         console.error('Error creating order:', error);
@@ -83,16 +75,33 @@ routerOrder.post('/Order', async (req, res) => {
         const db = client.db(dbName);
         const collection = db.collection(collectionOrder);
 
-        
+        // Insert order into the database
         const result = await collection.insertOne(orderData);
+
+        // Update stock in the Product collection for each product in the order
+        const productIds = orderData.productIds;
+        console.log(productIds)
+        const productCollection = db.collection('Products');
+
+        for (const productId of productIds) {
+            console.log(`pIDS:${productId}`)
+            const product = await productCollection.findOne({ _id: new ObjectId(productId) });
+            if (product) {
+                await productCollection.updateOne(
+                    { _id: new ObjectId(productId) },
+                    { $set: { stock : parseInt(product.stock) - 1 } } // Decrement stock by 1
+                );
+            }
+        }
 
         // Send response
         res.status(201).json({ message: 'Order added successfully', orderId: result.insertedId });
     } catch (error) {
         console.error('Error adding order:', error);
         res.status(500).json({ message: 'Internal server error' });
-    } 
-});//perfect
+    }
+});
+
 
 
 // DELETE Order

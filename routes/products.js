@@ -155,9 +155,11 @@ module.exports = function(client) {
             if (!product) {
                 return res.status(404).json({ message: 'Product not found' });
             }
-    
-            // Return product details along with image paths
-            res.status(200).json(product);
+            
+            
+                res.status(200).json(product);
+            
+            
         } catch (error) {
             console.error('Error retrieving product:', error);
             res.status(500).json({ message: 'Internal server error' });
