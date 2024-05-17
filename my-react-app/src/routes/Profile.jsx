@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import './styleProfile.css'; // Import CSS file for styling
+import { Link, useNavigate } from 'react-router-dom';
+
+
 
 const UserProfile = () => {
   // State to hold user information retrieved from cookies
+  const navigate = useNavigate();
+
   const [userInfo, setUserInfo] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -37,6 +42,8 @@ const UserProfile = () => {
       Cookies.remove('userInfo');
       // Clear the user info from state
       setUserInfo(null);
+      navigate('/Login');
+
     }
   };
 
