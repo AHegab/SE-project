@@ -27,6 +27,7 @@ body, html {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
+    width: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -37,37 +38,40 @@ body, html {
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    color: #000000;
+    color: #ffffff;
     font-family: '911 Porscha', sans-serif;
     font-size: 40px;
 }
 
 #Login-text {
     margin-bottom: 20px;
-    color: #5c0505;
+    color: #b80808;
 }
 
 form {
-    max-width: 400px;
+    max-width: 800px;
     width: 100%;
 }
 
 .loginForm {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 100%;
+    text-align: center;
+    align-self: center;
 }
 
 .form-group {
     margin-bottom: 15px;
     width: 100%;
+    align-self: center;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bolder;
-    color: #000000;
+    color: #ffffff;
+    align-self: center;
 }
 
 .form-group input {
@@ -75,15 +79,17 @@ form {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    align-self: center;
 }
 
 .btn {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     margin-top: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    align-self: center;
 }
 
 .btn-primary {
@@ -105,6 +111,9 @@ form {
 
 .btn-secondary:hover {
     background-color: rgb(128, 0, 0);
+}
+.form-check-label{
+    color:#fff;
 }
 
 @media (max-width: 768px) {
