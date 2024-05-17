@@ -31,8 +31,6 @@ const App = ()=> {
               <Route path='/AddProduct' exact Component={AddProduct}></Route>
               <Route path='/FeedbackList' exact Component={FeedbackList}></Route>
 
-        
-
               <Route path='/UserProfile' exact Component={UserProfile}></Route>
 
 

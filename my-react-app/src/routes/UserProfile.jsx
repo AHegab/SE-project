@@ -39,6 +39,8 @@ const UserProfile = () => {
     setShowConfirmation(false);
     if (confirmed) {
       // Clear the 'userInfo' cookie
+      Cookies.remove('accessToken');
+      Cookies.remove('refreshToken');
       Cookies.remove('userInfo');
       // Clear the user info from state
       setUserInfo(null);

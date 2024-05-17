@@ -20,7 +20,7 @@ function NavBar() {
             <ul>
                 <li><Link to="/">Home</Link></li>
                 {isLoggedIn ? (
-                    <li><Link to="/Profile">Profile</Link></li>
+                    <li><Link to="/UserProfile">Profile</Link></li>
                 ) : (
                     <li><Link to="/Login">Login</Link></li>
                 )}
