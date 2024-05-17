@@ -1,0 +1,18 @@
+/* styleRegister.css */
+
+.register-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 100vh; /* Makes the container take up the full height of the viewport */
+}
+
+#registerForm {
+    width: 100%; /* Ensures the form takes up the full width of the container */
+    max-width: 400px; /* Sets a max width for the form for better readability */
+    padding: 20px; /* Adds some padding inside the form */
+    border: 1px solid #ccc; /* Adds a light border around the form */
+    border-radius: 5px; /* Rounds the corners of the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a 3D effect */
+    background-color: #fff; /* Sets the background color of the form */
+}

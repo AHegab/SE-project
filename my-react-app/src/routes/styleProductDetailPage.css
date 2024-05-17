@@ -1,0 +1,27 @@
+/* ProductDetail.css */
+
+.product-detail {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.product-detail img.product-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.product-detail h1 {
+    margin-bottom: 20px;
+}
+
+.product-detail p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
