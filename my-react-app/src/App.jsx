@@ -6,12 +6,14 @@ import Header from './Header.js';
 import ProductDetailPage from './routes/ProductDetailPage';
 import Home from './routes/Home';
 import Login from './routes/Login';
+
 import Product from './routes/Products';
 // import Profile from "./routes/ProfilePage"
 import ContactUs from './routes/ContactUs';
 import AddProduct from './routes/AddProduct';
 import Register from './routes/Register';
 import FeedbackList from './routes/FeedbackList';
+
 
 const App = ()=> {
   return (
@@ -31,6 +33,7 @@ const App = ()=> {
               {/* <Route path='/profile' exact Component={Profile}></Route> */}
               <Route path="/product/:id" element={<ProductDetailPage />} />
             </Routes>
+
           <Footer />
         </Router>
     </div>
