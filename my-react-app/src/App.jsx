@@ -14,8 +14,9 @@ import Register from './routes/Register';
 import FeedbackList from './routes/FeedbackList';
 import UserProfile from './routes/UserProfile';
 import PlaceOrderPage from './routes/PlaceOrderPage'
-
-
+import Admins from './routes/Admins'
+import ViewAllOrders from './routes/ViewAllOrders'
+import PastOrders from './routes/PastOrders'
 const App = ()=> {
   return (
     <div>
@@ -33,8 +34,9 @@ const App = ()=> {
               <Route path='/FeedbackList' exact Component={FeedbackList}></Route>
               <Route path='/PlaceOrderPage' exact Component={PlaceOrderPage}></Route>
               <Route path='/UserProfile' exact Component={UserProfile}></Route>
-
-
+              <Route path='/admin' exact Component={Admins}></Route>
+              <Route path='/ViewAllOrders' exact Component={ViewAllOrders}></Route>
+              <Route path='/PastOrders' exact Component={PastOrders}></Route>
               {/* <Route path='/profile' exact Component={Profile}></Route> */}
 
               <Route path="/product/:id" element={<ProductDetailPage />} />

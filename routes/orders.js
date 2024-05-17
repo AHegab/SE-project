@@ -18,26 +18,24 @@ module.exports = function(client) {
 
     
 routerOrder.get('/Order', async (req, res) => {
+
     const order = await client.db('Porsche').collection('Orders').find({}).toArray();
     res.json(order);
-});//perfect
 
-routerOrder.get('/Order/:userId', async (req, res) => {
-    const userId = req.params.userId;
+});
 
+routerOrder.get('/order/user/:userId', async (req, res) => {
     try {
-        const orders = await client.db('Porsche').collection('Orders').find({ customerId: userId }).toArray();
-
-        if (!orders) {
-            return res.status(404).json({ error: "No orders found for this user" });
-        }
-
+        const userId = req.params.userId;
+        console.log(`userId=${userId}`); // Check the received user ID
+        const orders = await client.db('Porsche').collection('Orders').find({ userId }).toArray();
         res.json(orders);
     } catch (error) {
         console.error('Error fetching orders:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 
 
 routerOrder.get('/Order/:id', async (req, res) => {

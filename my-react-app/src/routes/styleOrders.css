@@ -1,0 +1,29 @@
+.orders-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .orders-list {
+    margin-top: 20px;
+  }
+  
+  .order-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .order-item p {
+    margin: 5px 0;
+  }
+  
+  .order-item ul {
+    margin-top: 5px;
+    list-style: none;
+    padding-left: 20px;
+  }
+  
+  .order-item ul li {
+    margin-bottom: 5px;
+  }
+  
