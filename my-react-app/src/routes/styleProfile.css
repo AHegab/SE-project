@@ -1,0 +1,97 @@
+.centered-container {
+    text-align: center;
+    margin: 20px auto; 
+    width: 50%; 
+    border-radius: 10px; /* Add rounded corners */
+    background-color: #ffffff; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    padding: 30px; 
+    margin-bottom: 20px;
+
+  }
+  
+  .centered-container h2 {
+    margin-bottom: 10px; 
+  }
+  
+  .centered-container p.username {
+    margin-top: 10px; 
+  }
+  
+  
+  .signout-button {
+    background-color: #dd6c6c; 
+    color: #fff; 
+    border: none; 
+    border-radius: 10px; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+    margin-top:20px; 
+  }
+  
+  .signout-button:hover {
+    background-color: #b20b0b; 
+  }
+  
+  /* Add this to styleProfile.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .confirmation-dialog {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .confirmation-dialog button {
+    margin: 0 10px;
+  }
+  /* Add this to styleProfile.css */
+.confirmation-dialog button.no-button {
+    background-color: #010101; /* Green color */
+    color: #fff; /* White text color */
+  }
+/* Add this to styleProfile.css */
+/* Add this to styleProfile.css */
+/* Add this to styleProfile.css */
+/* Add this to styleProfile.css */
+.confirmation-dialog button {
+    background-color: #070707; 
+    color: #ffffff; 
+    border: none; 
+    border-radius: 10px; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+    margin-top:20px; 
+  }
+  
+  .confirmation-dialog button.yes-button,
+  .confirmation-dialog button.no-button {
+    border-radius: 20px; /* Apply the same border-radius as the signout-button */
+    transition: background-color 0.3s ease; /* Add smooth transition for background-color */
+  }
+  
+  .confirmation-dialog button:hover {
+    opacity: 0.8; /* Reduce opacity on hover */
+  }
+  
+  .confirmation-dialog button.yes-button:hover {
+    background-color: #351c1c; 
+  }
+  
+  .confirmation-dialog button.no-button:hover {
+    background-color: #82a883; /* Darken green color on hover */
+  }
