@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 import './styleProfile.css'; // Import CSS file for styling
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -39,6 +40,24 @@ const UserProfile = () => {
       Cookies.remove('userInfo');
       setUserInfo(null);
       navigate('/Login');
+
+    }
+  };
+
+  // Function to handle requesting admin status
+  const handleRequestAdmin = async () => {
+    if (userInfo) {
+      try {
+        const response = await axios.post('http://localhost:3001/v1/api/request-admin', {  // Updated endpoint
+          username: userInfo.username,
+          userId: userInfo.userId
+        }, { withCredentials: true });
+        alert(response.data.message);
+      } catch (error) {
+        console.error('Error requesting admin status:', error);
+        alert('There was an error sending your request.');
+      }
+
     }
   };
 
@@ -70,7 +89,9 @@ const UserProfile = () => {
           )}
           {/* Render the request admin button for customers */}
           {userInfo.role === 'Customer' && (
+
             <button className="reqAdmin-button" onClick={handleRequestAdmin}>Request Admin</button>
+
           )}
           <button className="signout-button" onClick={handleSignOut}>Sign Out</button>
           {/* Confirmation modal for sign out */}
