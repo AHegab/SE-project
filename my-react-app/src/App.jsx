@@ -12,7 +12,7 @@ import ContactUs from './routes/ContactUs';
 import AddProduct from './routes/AddProduct';
 import Register from './routes/Register';
 import FeedbackList from './routes/FeedbackList';
-import UserProfile from './routes/Profile.jsx';
+import UserProfile from './routes/UserProfile';
 
 
 const App = ()=> {
