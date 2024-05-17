@@ -23,7 +23,7 @@ const LoginPage = () => {
             });
             console.log(username);
             if (response.status === 200) {
-                navigate(response.data.redirectUrl);
+                navigate('/');
             } else {
                 setError(response.data.message || 'Login failed');
             }
