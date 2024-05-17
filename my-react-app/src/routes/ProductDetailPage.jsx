@@ -28,6 +28,7 @@ import React, { useEffect, useState } from 'react';
             const fetchProduct = async () => {
                 try {
                     const response = await axios.get(`http://localhost:3001/v1/api/Product/${id}`);
+                    
                     const updatedProduct = { ...response.data, imagePaths: rewriteImagePaths(response.data.imagePaths) };
                     setProduct(updatedProduct);
                 } catch (error) {
@@ -49,7 +50,11 @@ import React, { useEffect, useState } from 'react';
                 alert('User not logged in.');
                 return;
             }
-        
+
+            if (product.stock <= 0) {
+                alert('Product out of stock.');
+                return;
+            }
             try {
                 const { userId } = userInfo;
         

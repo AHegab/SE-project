@@ -54,6 +54,8 @@ module.exports = function(client) {
         const updatedCartData = req.body;
     
         try {
+
+            
             // Your existing code for updating the cart item
         } catch (error) {
             console.error('Error updating cart item:', error);
@@ -80,6 +82,26 @@ module.exports = function(client) {
         }
         
         res.json(cart);
+    });
+
+    router.get('/cart/user/:userId', async (req, res) => {
+        try {
+            const { userId } = req.params;
+            const cart = await client.db('Porsche').collection('Carts').findOne({ userId });
+            
+            if (!cart) {
+                return res.status(404).json({ error: "Cart not found" });
+            }
+            
+            res.json(cart);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    });
+    
+    router.delete('/cart/:id', async (req, res) => {
+        const result = await client.db('Porsche').collection('Carts').deleteOne({ _id:new mongoose.Types.ObjectId(req.params.id) });
+        res.json({ message: `${result.deletedCount} cart(s) deleted` });
     });
 
     return router;
