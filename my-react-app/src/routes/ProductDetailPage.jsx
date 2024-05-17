@@ -32,7 +32,6 @@ const ProductDetailPage = () => {
         });
     };
     
-    
 
     // Method to handle adding product to cart
     const addToCart = async () => {
