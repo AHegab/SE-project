@@ -1,18 +1,68 @@
-/* styleRegister.css */
-
-.register-container {
+.register-page {
     display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
-    height: 100vh; /* Makes the container take up the full height of the viewport */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://cdn.wallpapersafari.com/27/91/hfeDiM.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
-#registerForm {
-    width: 100%; /* Ensures the form takes up the full width of the container */
-    max-width: 400px; /* Sets a max width for the form for better readability */
-    padding: 20px; /* Adds some padding inside the form */
-    border: 1px solid #ccc; /* Adds a light border around the form */
-    border-radius: 5px; /* Rounds the corners of the form */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a 3D effect */
-    background-color: #fff; /* Sets the background color of the form */
+.overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#porsche-text {
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 20px;
+    display: block;
+}
+
+#register-text {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.registerForm {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
 }

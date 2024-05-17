@@ -44,10 +44,10 @@ router.post('/login', async (req, res) => {
 
         await saveRefreshToken(user._id, refreshToken);
 
-        res.cookie('accessToken', accessToken, { httpOnly: true });
-        res.cookie('refreshToken', refreshToken, { httpOnly: true });
+        res.cookie('accessToken', accessToken, { httpOnly: true, secure: true, sameSite: 'None' });
+        res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: true, sameSite: 'None' });
         user.password = undefined;
-        res.cookie('info', user, { httpOnly: true });
+        res.cookie('userInfo', JSON.stringify({ username: user.username , Address: user.address , City: user.city , Region: user.region , role: user.role ,Zip: user.zip, Dob: user.dob  }), { secure: true, sameSite: 'None' });
 
         console.log(`Message from the server: ${Username} logged in successfully`);
 

@@ -28,9 +28,21 @@ const ProductDetailPage = () => {
     const rewriteImagePaths = (imagePaths) => {
         return imagePaths.map((path) => {
             // Replace backslashes with forward slashes
-            console.log("./"+(path.replace(/\\/g, '/')));
-            return ("./"+(path.replace(/\\/g, '/')));
+            return "./" + path.replace(/\\/g, '/');
         });
+    };
+
+    // Method to handle adding product to cart
+    const addToCart = async () => {
+        try {
+            const response = await axios.post('http://localhost:3001/v1/api/cart', { productId: product._id, quantity: 1 }, { withCredentials: true });
+            if (response.status === 201) {
+                alert('Product added to cart successfully!');
+            }
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+            alert('Failed to add product to cart.');
+        }
     };
 
     if (!product) {
@@ -58,6 +70,7 @@ const ProductDetailPage = () => {
                     <p><strong>Model:</strong> {product.model}</p>
                     <p><strong>Year:</strong> {product.year}</p>
                 </div>
+                <button className="add-to-cart-button" onClick={addToCart}>Add to Cart</button>
             </div>
         </div>
     );
