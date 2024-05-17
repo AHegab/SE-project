@@ -9,6 +9,7 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "font-awesome": "^4.7.0",
+    "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.6.1",
     "mongoose": "^8.3.4",
@@ -17,7 +18,8 @@
     "nodemon": "^3.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "universal-cookie": "^7.1.4"
   },
   "scripts": {
     "start": "nodemon server.js"
