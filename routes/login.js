@@ -44,8 +44,13 @@ router.post('/login', async (req, res) => {
 
         await saveRefreshToken(user._id, refreshToken);
 
-        res.cookie('accessToken', JSON.stringify(accessToken), { httpOnly: true, secure: true, sameSite: 'None' });
-        res.cookie('refreshToken',JSON.stringify(refreshToken) , { httpOnly: true, secure: true, sameSite: 'None' });
+        res.cookie('accessToken', accessToken, { httpOnly: true, secure: true, sameSite: 'None' });
+        res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: true, sameSite: 'None' });
+        user.password = undefined;
+        res.cookie('userInfo', JSON.stringify({ username: user.username, role: user.role, id: user._id }), { secure: true, sameSite: 'None' });
+        res.cookie('accessToken', accessToken, { httpOnly: true });
+        res.cookie('refreshToken', refreshToken, { httpOnly: true });
+
         user.password = undefined;
 
         res.cookie('userInfo', JSON.stringify({

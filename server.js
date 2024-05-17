@@ -31,6 +31,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(express.static('views/', { root: __dirname }));
 app.use(express.static(path.join(__dirname, 'client/build')));

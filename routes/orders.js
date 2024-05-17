@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 routerOrder.use(express.json());
 
+
 const dbName = 'Porsche';
 const collectionOrder = 'Orders';
 
@@ -20,6 +21,24 @@ routerOrder.get('/Order', async (req, res) => {
     const order = await client.db('Porsche').collection('Orders').find({}).toArray();
     res.json(order);
 });//perfect
+
+routerOrder.get('/Order/:userId', async (req, res) => {
+    const userId = req.params.userId;
+
+    try {
+        const orders = await client.db('Porsche').collection('Orders').find({ customerId: userId }).toArray();
+
+        if (!orders) {
+            return res.status(404).json({ error: "No orders found for this user" });
+        }
+
+        res.json(orders);
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 
 routerOrder.get('/Order/:id', async (req, res) => {
     
@@ -33,6 +52,26 @@ routerOrder.get('/Order/:id', async (req, res) => {
 });//pefect
 
 
+//add order
+router.post('/addOrder', async (req, res) => {
+    const { userId, productIds, datetime, notes, total } = req.body;
+
+    try {
+        const newOrder = new Order({
+            userId: mongoose.Types.ObjectId(userId),
+            productIds: productIds.map(id => mongoose.Types.ObjectId(id)),
+            datetime: new Date(datetime),
+            notes,
+            total
+        });
+
+        await newOrder.save();
+        res.status(201).json({ message: 'Order created successfully', order: newOrder });
+    } catch (error) {
+        console.error('Error creating order:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 
 routerOrder.post('/Order', async (req, res) => {
@@ -52,17 +91,14 @@ routerOrder.post('/Order', async (req, res) => {
     } catch (error) {
         console.error('Error adding order:', error);
         res.status(500).json({ message: 'Internal server error' });
-    } finally {
-        // Close the MongoDB connection
-        client.close();
-    }
+    } 
 });//perfect
 
 
 // DELETE Order
 routerOrder.delete('/Order/:orderId', async (req, res) => {
     const orderId = req.params.orderId;
-    // console.log(orderId);
+    //  console.log(orderId);
     const updatedOrderData = req.body;
     
     try {
@@ -74,7 +110,7 @@ routerOrder.delete('/Order/:orderId', async (req, res) => {
         
         // console.log(customerID);
         const userRole=req.cookies.info;
-
+        console.log(userId);
         if(userId!=customerID || userRole.role!='Admin')
             {
                 return res.status(403).json('User does not have access');
@@ -90,10 +126,7 @@ routerOrder.delete('/Order/:orderId', async (req, res) => {
     } catch (error) {
         console.error('Error deleting order:', error);
         res.status(500).json({ message: 'Internal server error' });
-    } finally {
-        // Close the MongoDB connection
-        await client.close();
-    }
+    } 
 });//perfect
 
 // Update Order
@@ -132,10 +165,7 @@ routerOrder.put('/Order/:orderId', async (req, res) => {
     } catch (error) {
         console.error('Error updating order:', error);
         res.status(500).json({ message: 'Internal server error' });
-    } finally {
-        // Close the MongoDB connection
-        await client.close();
-    }
+    } 
 });
 return routerOrder;
 };// perfect

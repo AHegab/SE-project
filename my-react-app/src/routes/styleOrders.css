@@ -1,0 +1,114 @@
+.orders-page {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.order-form {
+    margin-bottom: 20px;
+}
+
+.order-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.order-form button {
+    display: block; /* Ensure button takes full width */
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.order-form button:hover {
+    background-color: #0056b3;
+}
+
+.orders-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+.order-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.order-item div {
+    margin-bottom: 10px;
+}
+
+.order-item input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.order-item button {
+    display: block; /* Ensure button takes full width */
+    width: 100%;
+    padding: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.order-item button:hover {
+    background-color: #0056b3;
+}
+
+.navigation-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.navigation-links button,
+.navigation-links a {
+    display: inline-block; /* Make buttons and links appear inline */
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+}
+
+.navigation-links button {
+    background-color: #dc3545;
+}
+
+.navigation-links button:hover {
+    background-color: #c82333;
+}
+
+.navigation-links a {
+    background-color: #28a745;
+}
+
+.navigation-links a:hover {
+    background-color: #218838;
+}
