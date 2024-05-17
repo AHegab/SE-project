@@ -14,6 +14,8 @@ const productsRouter = require('./routes/products');
 const ordersRouter = require('./routes/orders');
 const loginRouter = require('./routes/login');
 const usersRouter = require('./routes/users');
+const feedbackRouter = require('./routes/feedback');
+const cartRouter = require('./routes/cart');
 
 const dbString = process.env.DB_STRING;
 const client = new MongoClient(dbString);
@@ -40,6 +42,8 @@ app.use('/v1/api', productsRouter(client));
 app.use('/v1/api', ordersRouter(client));
 app.use('/', loginRouter(client));  // Ensure the correct path is used here
 app.use('/v1/api', usersRouter(client));
+app.use('/v1/api', feedbackRouter(client));
+app.use('/v1/api', cartRouter(client));
 
 mongoose.connect(dbString)
     .then(() => {
@@ -137,3 +141,5 @@ app.post('/register', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
+
