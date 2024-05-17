@@ -14,7 +14,7 @@ const ContactUs = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+    
         const feedbackData = {
             inquiryType,
             inquiry,
@@ -24,7 +24,7 @@ const ContactUs = () => {
             email,
             phoneNumber,
         };
-
+    
         try {
             const response = await axios.post('http://localhost:3001/v1/api/contactUs', feedbackData);
             setResponseMessage('Feedback submitted successfully');
@@ -33,10 +33,11 @@ const ContactUs = () => {
             setResponseMessage('Error submitting feedback');
         }
     };
+    
 
     return (
         <>
-            <div className="container" style={{ backgroundImage: "my-react-app/public/feedbackBackgrounImage.jpg" }}>
+            <div className="container" style={{ backgroundImage: `url('/public/feedbackBackgrounImage.jpg')` }}>;
                 <div className="form_container">
                     <form className="form-horizontal" onSubmit={handleSubmit}>
                         <div className="form-group">
