@@ -1,3 +1,4 @@
+// ProductsPage.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -22,7 +23,7 @@ const ProductsPage = () => {
     return (
         <div className="products-container">
             {products.map((product) => (
-                <Link to={`/product/${product._id}`} key={product._id} className="product-card">
+                <Link to={`/product/update/${product._id}`} key={product._id} className="product-card">
                     <img src={product.imageLink} alt={product.name} className="product-image" />
                     <h3 className="product-name">{product.name}</h3>
                 </Link>
