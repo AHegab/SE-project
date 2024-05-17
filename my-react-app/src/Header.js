@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import "./styleHeader.css";
 
 function NavBar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        // Check for the presence of a specific cookie (e.g., 'authToken')
+        const authToken = Cookies.get('userInfo');
+        setIsLoggedIn(!!authToken);
+    }, []);
+
     return (
         <nav className="navbar navbar-expand px-3 border-bottom">
             <button className="btn" type="button" data-bs-theme="dark">
@@ -10,8 +19,14 @@ function NavBar() {
             </button>
             <ul>
                 <li><Link to="/">Home</Link></li>
+                {isLoggedIn ? (
+                    <li><Link to="/Profile">Profile</Link></li>
+                ) : (
+                    <li><Link to="/Login">Login</Link></li>
+                )}
                 <li><Link to="/Product">View All Cars</Link></li>
                 <li><Link to="/ContactUs">Contact Us</Link></li>
+                
             </ul>
         </nav>
     );
@@ -19,7 +34,7 @@ function NavBar() {
 
 function Header() {
     return (
-        <header style={{ textAlign: 'center', fontFamily: '911 Porscha'}}>
+        <header style={{ textAlign: 'center', fontFamily: '911 Porscha' }}>
             <h1>Porsche</h1>
             <NavBar />
         </header>

@@ -6,9 +6,8 @@ import Header from './Header.js';
 import ProductDetailPage from './routes/ProductDetailPage';
 import Home from './routes/Home';
 import Login from './routes/Login';
-
+import Profile from "./routes/UserProfile.jsx"
 import Product from './routes/Products';
-// import Profile from "./routes/ProfilePage"
 import ContactUs from './routes/ContactUs';
 import AddProduct from './routes/AddProduct';
 import Register from './routes/Register';
@@ -30,6 +29,7 @@ const App = ()=> {
               <Route path='/Register' exact Component={Register}></Route>
               <Route path='/AddProduct' exact Component={AddProduct}></Route>
               <Route path='/FeedbackList' exact Component={FeedbackList}></Route>
+              <Route path='/Profile' exact Component={Profile}></Route>
               {/* <Route path='/profile' exact Component={Profile}></Route> */}
               <Route path="/product/:id" element={<ProductDetailPage />} />
             </Routes>
