@@ -66,7 +66,7 @@ const PlaceOrderPage = () => {
         try {
             const { userId } = userInfo;
             const response2 = await axios.get(`http://localhost:3001/v1/api/cart/user/${userInfo.userId}`, { withCredentials: true });
-            const response = await axios.post('http://localhost:3001/v1/api/Order', {
+            const response = await axios.post('http://localhost:3001/v1/api/addOrder', {
                 userId: userId,
                 productIds: cart,
                 datetime: new Date().toISOString(),

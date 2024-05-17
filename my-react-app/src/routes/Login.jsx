@@ -35,7 +35,6 @@ const LoginPage = () => {
     return (
         <div className="login-page">
         <div className="overlay">
-            <a id="porsche-text" href="/">Porsche</a>
             <h1 id="Login-text">Login</h1>
             <form onSubmit={handleLogin}>
             <div className="loginForm">

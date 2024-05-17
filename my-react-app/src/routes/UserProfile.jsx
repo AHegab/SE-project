@@ -40,6 +40,7 @@ const UserProfile = () => {
       Cookies.remove('userInfo');
       setUserInfo(null);
       navigate('/Login');
+
     }
   };
 
@@ -56,7 +57,15 @@ const UserProfile = () => {
         console.error('Error requesting admin status:', error);
         alert('There was an error sending your request.');
       }
+
     }
+  };
+
+  // Function to handle requesting admin status
+  const handleRequestAdmin = () => {
+    // Perform the necessary actions to request admin status
+    // For example, you could send a request to the server to notify the admin or update the user's role in the database
+    alert('Your request to become an admin has been sent.');
   };
 
   return (
@@ -80,7 +89,9 @@ const UserProfile = () => {
           )}
           {/* Render the request admin button for customers */}
           {userInfo.role === 'Customer' && (
-            <button onClick={handleRequestAdmin}>Request Admin</button>
+
+            <button className="reqAdmin-button" onClick={handleRequestAdmin}>Request Admin</button>
+
           )}
           <button className="signout-button" onClick={handleSignOut}>Sign Out</button>
           {/* Confirmation modal for sign out */}

@@ -118,7 +118,7 @@ app.get('/register', (req, res) => {
 
 app.post('/register', async (req, res) => {
     try {
-        const { username, password, address, city, region, role, zip, dob } = req.body;
+        const { username, email,password, address, city, region, role, zip, dob } = req.body;
         const db = client.db('Porsche');
         const collection = db.collection('Users');
 
@@ -130,11 +130,12 @@ app.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         await collection.insertOne({
             username,
+            email,
             password: hashedPassword,
             address,
             city,
             region,
-            role,
+            role: "Customer",
             zip,
             dob
         });
