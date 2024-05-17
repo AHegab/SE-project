@@ -97,14 +97,14 @@ module.exports = function(client) {
     });
     
     // Route for updating an admin by ID
-    router.put('/update-role/:userId', async (req, res) => {
-        try {
+    router.put('/update-role/:userId', async (req, res) => { 
+      try {
           const userId = req.params.userId;
           const { role } = req.body;
       
           // Convert userId to ObjectId
           const userIdObject = new ObjectId(userId);
-      
+
           // Update the user's role in the database
           const result = await client.db('Porsche').collection('Users').updateOne(
             { _id: userIdObject },

@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import UnauthorizedAccess from './UnauthorizedAccess';
 import "./styleUpdateUsers.css";
+import Cookies from 'js-cookie';
 
 const UserRoleUpdate = () => {
   const [userId, setUserId] = useState('');
   const [newRole, setNewRole] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isAuthorized, setIsAuthorized] = useState(true);
+
+  useEffect(() => {
+    const userInfo = Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')) : null;
+    if (userInfo && userInfo.role !== "Admin") {
+      setIsAuthorized(false);
+    }
+  }, []);
 
   const handleRoleUpdate = async () => {
     try {
@@ -20,6 +30,10 @@ const UserRoleUpdate = () => {
       console.error('Error updating user role:', error);
     }
   };
+
+  if (!isAuthorized) {
+    return <UnauthorizedAccess />;
+  }
 
   return (
     <div>
