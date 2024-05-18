@@ -40,7 +40,7 @@ module.exports = function(client) {
                 res.status(200).json({ message: 'Cart updated successfully', cart: updatedCart.value });
             } else {
                 // If no cart record exists, create a new one
-                const result = await db.collection('Carts').insertOne({ userId, productIds: [productId] });
+                const result = await db.collection('Carts').insertOne({ userId:userId, productIds: [productId] });
                 res.status(201).json({ message: 'Cart created successfully', feedbackId: result.insertedId });
             }
         } catch (error) {

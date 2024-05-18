@@ -26,8 +26,20 @@ function NavBar() {
                 )}
                 <li><Link to="/Product">View All Cars</Link></li>
                 <li><Link to="/ContactUs">Contact Us</Link></li>
-                <li><Link to="/PlaceOrderPage">Cart</Link></li>
-                <li><Link to="/PastOrders">Past orders</Link></li>
+
+                {isLoggedIn ? (
+                    <li><Link to="/PlaceOrderPage">Cart</Link></li>
+                    
+                ) : (
+                    null
+                )}
+                {isLoggedIn ? (
+                    <li><Link to="/PastOrders">Past orders</Link></li>
+                    
+                ) : (
+                    null
+                )}
+                
             </ul>
         </nav>
     );

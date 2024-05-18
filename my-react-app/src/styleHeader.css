@@ -1,5 +1,82 @@
-@import url('https://fonts.cdnfonts.com/css/911-porscha');
-
-body {
-    font-family: '911 Porscha', sans-serif;
-}
+/* styleHeader.css */
+.navbar {
+    background-color: #333;
+    padding: 10px 0;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .navbar li:last-child {
+    margin-right: 0;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar a:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
+  
+  .navbar-toggler-icon {
+    /* color: #fff; */
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar-toggler-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 10px;
+    }
+  
+    .navbar ul {
+      display: none;
+      text-align: center;
+      width: 100%;
+      background-color: #333;
+      position: absolute;
+      top: 55px; /* Adjust this according to your header height */
+      left: 0;
+      z-index: 1;
+    }
+  
+    .navbar li {
+      display: block;
+      margin: 0;
+    }
+  
+    .navbar li:last-child {
+      margin-bottom: 10px;
+    }
+  
+    .navbar-toggler-icon {
+      display: block;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+    }
+  
+    .navbar.toggled ul {
+      display: block;
+    }
+  }
+  

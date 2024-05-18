@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-
+import './App.css';
 import Footer from './Footer.js';
 import Header from './Header.js';
 import ProductDetailPage from './routes/ProductDetailPage';
 import Home from './routes/Home';
 import Login from './routes/Login';
-import Profile from "./routes/UserProfile.jsx"
+
 import Product from './routes/Products';
 import ContactUs from './routes/ContactUs';
 import AddProduct from './routes/AddProduct';
