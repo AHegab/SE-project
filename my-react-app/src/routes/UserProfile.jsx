@@ -63,6 +63,7 @@ const UserProfile = () => {
       {userInfo ? (
         <div>
           <p><strong>Username:</strong> {userInfo.username}</p>
+          <p><strong>Email:</strong> {userInfo.email}</p>
           <p><strong>Address:</strong> {userInfo.Address}</p>
           <p><strong>City:</strong> {userInfo.City}</p>
           <p><strong>Region:</strong> {userInfo.Region}</p>
