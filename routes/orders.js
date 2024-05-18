@@ -20,38 +20,51 @@ const collectionOrder = 'Orders';
 module.exports = function(client) {
 
     routerOrder.get('/Order', async (req, res) => {
-        const order = await client.db('Porsche').collection('Orders').find({}).toArray();
-        res.json(order);
-    });
-
-    routerOrder.get('/order/user/:userId', async (req, res) => {
         try {
-            const userId = req.params.userId;
-            console.log(`userId=${userId}`); // Check the received user ID
-            const orders = await client.db('Porsche').collection('Orders').find({ userId }).toArray();
+            const orders = await client.db('Porsche').collection('Orders').find({}).toArray();
             res.json(orders);
         } catch (error) {
             console.error('Error fetching orders:', error);
-            res.status(500).json({ error: 'Internal server error' });
+            res.status(500).json({ message: 'Internal server error' });
         }
     });
     
-    routerOrder.get('/Order/:id', async (req, res) => {
-        const orderId = req.params.id;
-
+    routerOrder.get('/order/user/:userId', async (req, res) => {
         try {
-            const order = await client.db('Porsche').collection('Orders').findOne({ _id: new ObjectId(orderId) });
-
-            if (!order) {
-                return res.status(404).json({ error: "Order not found" });
+            const userId = new ObjectId(req.params.userId); // Validate and convert userId
+            const orders = await client.db('Porsche').collection('Orders').find({ userId: userId }).toArray();
+            res.json(orders);
+        } catch (error) {
+            console.error('Error fetching orders for user:', error);
+            if (error.name === 'BSONTypeError') {
+                res.status(400).json({ message: 'Invalid user ID format' });
+            } else {
+                res.status(500).json({ message: 'Internal server error' });
             }
-
+        }
+    });
+    
+    
+    routerOrder.get('/Order/:id', async (req, res) => {
+        try {
+            const orderId = new ObjectId(req.params.id); // Convert and validate order ID
+            const order = await client.db('Porsche').collection('Orders').findOne({ _id: orderId });
+    
+            if (!order) {
+                return res.status(404).json({ message: "Order not found" });
+            }
+    
             res.json(order);
         } catch (error) {
             console.error('Error fetching order:', error);
-            res.status(500).json({ error: 'Internal server error' });
+            if (error.name === 'BSONTypeError') {
+                res.status(400).json({ message: 'Invalid order ID format' });
+            } else {
+                res.status(500).json({ message: 'Internal server error' });
+            }
         }
     });
+    
 
     //add order
    

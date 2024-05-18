@@ -3,7 +3,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const router = express.Router();
-const cors = require('cors'); 
+const cors = require('cors');
+const { body, validationResult } = require('express-validator'); 
 router.use(express.json());
 router.use(cookieParser());
 
