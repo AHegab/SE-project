@@ -1,0 +1,46 @@
+/* styleUpdateProducts.css */
+.update-product-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.update-product-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.update-product-container .form-group {
+    margin-bottom: 15px;
+}
+
+.update-product-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.update-product-container .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.update-product-container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.update-product-container button:hover {
+    background-color: #218838;
+}

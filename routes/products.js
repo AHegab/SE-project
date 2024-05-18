@@ -4,6 +4,8 @@ const multer = require('multer');
 const fs = require('fs');
 const { GridFSBucket, ObjectId } = require('mongodb');
 const path = require('path');
+const mongoose = require('mongoose');
+
 
 
 const router = express.Router();
@@ -115,20 +117,19 @@ module.exports = function(client) {
     
     
     router.put('/Product/:productId', async (req, res) => {
-
         const productId = req.params.productId;
         const updatedProductData = req.body;
-        const userRole=req.cookies.info;
-
-        if(userRole.role!='Admin')
-            {
-                return res.status(403).json('User does not have access');
-            }
+        const userRole = req.cookies.userInfo;
+    
+       
+        // Remove the _id field from updatedProductData if it exists
+        if (updatedProductData._id) {
+            delete updatedProductData._id;
+        }
     
         try {
-            
-            const result =await client.db('Porsche').collection('Products').updateOne(
-                {  _id:new mongoose.Types.ObjectId(req.params.productId)  },
+            const result = await client.db('Porsche').collection('Products').updateOne(
+                { _id: new mongoose.Types.ObjectId(productId) },
                 { $set: updatedProductData }
             );
     
@@ -140,9 +141,6 @@ module.exports = function(client) {
         } catch (error) {
             console.error('Error updating product:', error);
             res.status(500).json({ message: 'Internal server error' });
-        } finally {
-            // Close the MongoDB connection
-            await client.close();
         }
     });
     router.get('/Product/:id', async (req, res) => {
