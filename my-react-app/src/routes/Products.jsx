@@ -23,7 +23,7 @@ const ProductsPage = () => {
     return (
         <div className="products-container">
             {products.map((product) => (
-                <Link to={`/product/update/${product._id}`} key={product._id} className="product-card">
+                <Link to={`/product/${product._id}`} key={product._id} className="product-card">
                     <img src={product.imageLink} alt={product.name} className="product-image" />
                     <h3 className="product-name">{product.name}</h3>
                 </Link>

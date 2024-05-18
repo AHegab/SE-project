@@ -1,0 +1,24 @@
+/* styleOrders.css */
+
+.orders-container {
+    margin-top: 20px;
+  }
+  
+  .orders-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .order-cards {
+    width: 100%;
+  }
+  
+  /* For responsiveness */
+  @media (min-width: 768px) {
+    .order-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+  }
+  

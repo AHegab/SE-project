@@ -13,44 +13,46 @@ routerOrder.use(express.json());
 const dbName = 'Porsche';
 const collectionOrder = 'Orders';
 
+
+
+
 module.exports = function(client) {
 
+    routerOrder.get('/Order', async (req, res) => {
+        const order = await client.db('Porsche').collection('Orders').find({}).toArray();
+        res.json(order);
+    });
 
+    routerOrder.get('/order/user/:userId', async (req, res) => {
+        try {
+            const userId = req.params.userId;
+            console.log(`userId=${userId}`); // Check the received user ID
+            const orders = await client.db('Porsche').collection('Orders').find({ userId }).toArray();
+            res.json(orders);
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    });
     
-routerOrder.get('/Order', async (req, res) => {
+    routerOrder.get('/Order/:id', async (req, res) => {
+        const orderId = req.params.id;
 
-    const order = await client.db('Porsche').collection('Orders').find({}).toArray();
-    res.json(order);
+        try {
+            const order = await client.db('Porsche').collection('Orders').findOne({ _id: new ObjectId(orderId) });
 
-});
+            if (!order) {
+                return res.status(404).json({ error: "Order not found" });
+            }
 
-routerOrder.get('/order/user/:userId', async (req, res) => {
-    try {
-        const userId = req.params.userId;
-        console.log(`userId=${userId}`); // Check the received user ID
-        const orders = await client.db('Porsche').collection('Orders').find({ userId }).toArray();
-        res.json(orders);
-    } catch (error) {
-        console.error('Error fetching orders:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
+            res.json(order);
+        } catch (error) {
+            console.error('Error fetching order:', error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    });
 
-
-
-routerOrder.get('/Order/:id', async (req, res) => {
-    
-    const order = await client.db('Porsche').collection('Orders').findOne({ _id:new mongoose.Types.ObjectId(req.params.id) });
-    
-    if (!order) {
-        return res.status(404).json({ error: "Order not found" });
-    }
-    
-    res.json(order);
-});//pefect
-
-
-//add order
+    //add order
 routerOrder.post('/addOrder', async (req, res) => {
     const order = req.body;
 
@@ -63,6 +65,27 @@ routerOrder.post('/addOrder', async (req, res) => {
     }
 });
 
+routerOrder.put('/Order/:orderId', async (req, res) => {
+    const orderId = req.params.orderId;
+    const updatedOrderData = req.body;
+
+    try {
+        // Update the order in the collection
+        const result = await client.db(dbName).collection(collectionOrder).updateOne(
+            { "_id": new ObjectId(orderId) },
+            { $set: updatedOrderData }
+        );
+
+        if (result.matchedCount === 1) {
+            res.status(200).json({ message: 'Order updated successfully' });
+        } else {
+            res.status(404).json({ message: 'Order not found' });
+        }
+    } catch (error) {
+        console.error('Error updating order:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 routerOrder.post('/Order', async (req, res) => {
     try {
@@ -174,5 +197,6 @@ routerOrder.put('/Order/:orderId', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     } 
 });
-return routerOrder;
-};// perfect
+
+    return routerOrder;
+};

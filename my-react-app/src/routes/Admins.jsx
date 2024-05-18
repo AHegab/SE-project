@@ -12,7 +12,7 @@ const Admins = () => {
         <li><Link to="/FeedbackList">See Feedback</Link></li>
         <li><Link to="/UserRoleUpdate">Edit Users</Link></li>
         <li><Link to="/ViewAllOrders">See All Orders</Link></li>
-        <li><Link to="/edit-orders">Edit Orders</Link></li>
+        <li><Link to="/Orders">Edit Orders</Link></li>
         <li><Link to="/update-products">Update Products</Link></li>
         <li><Link to="/viewAdminsReqs">view Admins request </Link></li>
       </ul>

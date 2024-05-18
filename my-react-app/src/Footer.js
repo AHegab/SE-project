@@ -1,6 +1,6 @@
 function Footer(){
     return( <footer>
-        <p>&copy; 2024 Car Website. All rights reserved.</p>
+        <p>&copy; 2024 SE-team. All rights reserved.</p>
     </footer>)
 }
 
