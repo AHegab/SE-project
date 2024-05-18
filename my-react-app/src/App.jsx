@@ -22,6 +22,10 @@ import UserRoleUpdate from './routes/UserRoleUpdate'
 import Orders from "./routes/Orders";
 import EditOrder from "./routes/EditOrder";
 import UpdateProduct from "./routes/UpdateProduct";
+import AdminUpdateProduct from './routes/AdminUpdateProduct';
+import AdminProductList from './routes/AdminProductList';
+
+
 const App = ()=> {
   return (
     <div>
@@ -48,6 +52,9 @@ const App = ()=> {
               <Route path='/Orders' exact Component={Orders}></Route>
               <Route path='/update-products/:productId' element={<UpdateProduct />} />
               <Route path="/edit-order/:orderId" element={<EditOrder />} />
+              <Route path='/admin/update-product/:productId' element={<AdminUpdateProduct />} />
+
+              <Route path='/admin/products' element={<AdminProductList />} />
             </Routes>
 
           <Footer />

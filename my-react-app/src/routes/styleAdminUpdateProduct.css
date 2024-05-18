@@ -1,0 +1,59 @@
+/* styleAdminUpdateProduct.css */
+.update-product-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.update-product-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #d00;
+    font-family: 'Porsche Next', sans-serif;
+    margin-bottom: 20px;
+}
+
+.update-product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-label {
+    font-size: 1.2rem;
+    color: #333;
+    font-family: 'Porsche Next', sans-serif;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Porsche Next', sans-serif;
+}
+
+.form-input:focus {
+    border-color: #d00;
+    outline: none;
+}
+
+.form-button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #d00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Porsche Next', sans-serif;
+}
+
+.form-button:hover {
+    background-color: #a00;
+}
