@@ -1,3 +1,4 @@
+/* styleContactUs.css */
 .container {
     display: flex;
     flex-direction: column;
@@ -11,7 +12,7 @@
 .form_container {
     width: 100%;
     max-width: 500px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.175);
     padding: 20px;
     border-radius: 10px;
 }
@@ -22,6 +23,12 @@
 
 .form-control {
     width: 100%;
+    color: #444; /* Set text color to a darker shade */
+}
+
+/* Set text color for labels */
+label {
+    color: #555; /* Set label text color to a darker shade */
 }
 
 .submitButton {
@@ -37,4 +44,8 @@
 
 .submitButton:hover {
     background-color: #0056b3;
+}
+
+.response-message {
+    color: #444; /* Set text color for response message */
 }

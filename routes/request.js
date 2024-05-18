@@ -1,17 +1,30 @@
 const express = require('express');
 const router = express.Router();
 const cookieParser = require('cookie-parser');
+const { body, validationResult } = require('express-validator');
+const mongoose = require('mongoose');
 
 router.use(express.json());
 router.use(cookieParser());
 
 module.exports = function(client) {
-    router.post('/request-admin', async (req, res) => {
+
+    // Route to handle admin request submission
+    router.post('/request-admin', [
+        body('username').isString().notEmpty().withMessage('Username must be a non-empty string'),
+        body('userId').isMongoId().withMessage('UserId must be a valid MongoDB ObjectId')
+    ], async (req, res) => {
+        // Validate the request body
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
         try {
             const { username, userId } = req.body;
             const newRequest = {
                 username: username,
-                userId: userId,
+                userId: new mongoose.Types.ObjectId(userId),
                 createdAt: new Date()
             };
             await client.db('Porsche').collection('Requests').insertOne(newRequest);
@@ -22,11 +35,15 @@ module.exports = function(client) {
         }
     });
 
-    router.get("/req",async (req, res) => {
-
-        const requests = await client.db('Porsche').collection('Requests').find({}).toArray();
-                res.json(requests);
-
+    // Route to fetch all requests
+    router.get('/req', async (req, res) => {
+        try {
+            const requests = await client.db('Porsche').collection('Requests').find({}).toArray();
+            res.json(requests);
+        } catch (error) {
+            console.error('Error fetching requests:', error);
+            res.status(500).json({ message: 'Server error' });
+        }
     });
 
     return router;

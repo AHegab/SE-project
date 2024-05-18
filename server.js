@@ -116,18 +116,34 @@ app.get('/register', (req, res) => {
     res.render('register', { userId });
 });
 
-app.post('/register', async (req, res) => {
+app.post('/register', [
+    body('username').isString().notEmpty(),
+    body('password').isString().notEmpty(),
+    body('address').isString().notEmpty(),
+    body('city').isString().notEmpty(),
+    body('region').isString().notEmpty(),
+    body('zip').isString().notEmpty(),
+    body('dob').isISO8601().toDate(),
+    body('email').isEmail()
+], async (req, res) => {
     try {
-        const { username, email,password, address, city, region, role, zip, dob } = req.body;
-        const db = client.db('Porsche');
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        const { username, password, address, city, region, zip, dob, email } = req.body;
+
+        const db = mongoose.connection;
         const collection = db.collection('Users');
 
         const existingUser = await collection.findOne({ username });
         if (existingUser) {
-            return res.status(400).send("Username already exists");
+            return res.status(400).json({ message: "Username already exists" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
+
         await collection.insertOne({
             username,
             email,
@@ -135,15 +151,13 @@ app.post('/register', async (req, res) => {
             address,
             city,
             region,
-            role: "Customer",
             zip,
             dob
         });
 
-        res.status(201).render('login');
-        console.log(`Message from the server: ${username} registered successfully`);
+        res.status(201).json({ message: `${username} registered successfully` });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        res.status(500).json({ message: "Internal Server Error" });
     }
 });

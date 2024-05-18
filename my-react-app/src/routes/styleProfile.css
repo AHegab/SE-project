@@ -1,113 +1,131 @@
+/* styleProfile.css */
+
+/* Container Styles */
 .centered-container {
-    text-align: center;
-    margin: 20px auto; 
-    width: 50%; 
-    border-radius: 10px; /* Add rounded corners */
-    background-color: #ffffff; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    padding: 30px; 
-    margin-bottom: 20px;
+  text-align: center;
+  margin: 20px auto;
+  width: 50%;
+  border-radius: 10px; /* Add rounded corners */
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  padding: 30px;
+  margin-bottom: 20px;
+  position: relative; /* Ensure that child elements position properly */
+}
 
-  }
-  
-  .centered-container h2 {
-    margin-bottom: 10px; 
-  }
-  
-  .centered-container p.username {
-    margin-top: 10px; 
-  }
-  
-  
-  .signout-button {
-    background-color: #dd6c6c; 
-    color: #fff; 
-    border: none; 
-    border-radius: 10px; 
-    padding: 10px 20px; 
-    cursor: pointer; 
-    transition: background-color 0.3s;
-    margin-top:20px; 
-  }
-  
-  .signout-button:hover {
-    background-color: #b20b0b; 
-  }
-  
-  /* Add this to styleProfile.css */
+/* Background Image Styles */
+.centered-container::after {
+  content: '';
+  background-image: url('https://www.thedrive.com/content-b/message-editor/1599541182187-guards_red_911_turbo_s___004.jpg?auto=webp&optimize=high&quality=70&width=1440'); /* URL of the background image */
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the background image */
+  opacity: 0.5; /* Adjust the opacity as needed */
+  position: absolute; /* Position the background image */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1; /* Ensure the background stays behind the content */
+  border-radius: 10px; /* Match the container's border-radius */
+}
+
+/* Title Styles */
+.centered-container h2 {
+  margin-bottom: 10px;
+}
+
+/* Username Paragraph Styles */
+.centered-container p.username {
+  margin-top: 10px;
+}
+
+/* Signout Button Styles */
+.signout-button {
+  background-color: #dd6c6c;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.signout-button:hover {
+  background-color: #b20b0b;
+}
+
+/* Modal Overlay Styles */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .confirmation-dialog {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-  }
-  
-  .confirmation-dialog button {
-    margin: 0 10px;
-  }
-  /* Add this to styleProfile.css */
-.confirmation-dialog button.no-button {
-    background-color: #010101; /* Green color */
-    color: #fff; /* White text color */
-  }
-/* Add this to styleProfile.css */
-/* Add this to styleProfile.css */
-/* Add this to styleProfile.css */
-/* Add this to styleProfile.css */
-.confirmation-dialog button {
-    background-color: #070707; 
-    color: #ffffff; 
-    border: none; 
-    border-radius: 10px; 
-    padding: 10px 20px; 
-    cursor: pointer; 
-    transition: background-color 0.3s;
-    margin-top:20px; 
-  }
-  
-  .confirmation-dialog button.yes-button,
-  .confirmation-dialog button.no-button {
-    border-radius: 20px; /* Apply the same border-radius as the signout-button */
-    transition: background-color 0.3s ease; /* Add smooth transition for background-color */
-  }
-  
-  .confirmation-dialog button:hover {
-    opacity: 0.8; /* Reduce opacity on hover */
-  }
-  
-  .confirmation-dialog button.yes-button:hover {
-    background-color: #351c1c; 
-  }
-  
-  .confirmation-dialog button.no-button:hover {
-    background-color: #82a883; /* Darken green color on hover */
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .reqAdmin-button {
-    background-color: #dd6c6c; 
-    color: #fff; 
-    border: none; 
-    border-radius: 10px; 
-    padding: 10px 20px; 
-    cursor: pointer; 
-    transition: background-color 0.3s;
-    margin-top:20px; 
-  }
-  
-  .reqAdmin-button:hover {
-    background-color: #b20b0b; 
-  }
-  
+/* Confirmation Dialog Styles */
+.confirmation-dialog {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.confirmation-dialog button {
+  background-color: #070707;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.confirmation-dialog button.yes-button {
+  background-color: #dd6c6c; /* Red color */
+  color: #fff; /* White text color */
+  border-radius: 20px; /* Apply the same border-radius as the signout-button */
+  transition: background-color 0.3s ease; /* Add smooth transition for background-color */
+}
+
+.confirmation-dialog button.yes-button:hover {
+  background-color: #b20b0b; /* Darken red color on hover */
+}
+
+.confirmation-dialog button.no-button {
+  background-color: #007bff; /* Blue color */
+  color: #fff; /* White text color */
+  border-radius: 20px; /* Apply the same border-radius as the signout-button */
+  transition: background-color 0.3s ease; /* Add smooth transition for background-color */
+}
+
+.confirmation-dialog button.no-button:hover {
+  background-color: #0056b3; /* Darken blue color on hover */
+}
+
+.confirmation-dialog button:hover {
+  opacity: 0.8; /* Reduce opacity on hover */
+}
+
+/* Request Admin Button Styles */
+.reqAdmin-button {
+  background-color: #4caf50; /* Green color */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.reqAdmin-button:hover {
+  background-color: #357a38; /* Darken green color on hover */
+}
