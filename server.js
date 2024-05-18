@@ -17,7 +17,7 @@ const usersRouter = require('./routes/users');
 const feedbackRouter = require('./routes/feedback');
 const cartRouter = require('./routes/cart');
 const requestRouter = require('./routes/request');  // Import the requestRouter
-
+const { body, validationResult } = require('express-validator');
 const dbString = process.env.DB_STRING;
 const client = new MongoClient(dbString);
 
