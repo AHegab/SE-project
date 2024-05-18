@@ -1,9 +1,18 @@
-/* styleAdminUpdateProduct.css */
+
+
+body {
+    background-color: #f7f7f7;
+    color: #333;
+    font-family: 'Porsche Next', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 .update-product-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 20px;
-    background-color: #f7f7f7;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
@@ -14,6 +23,16 @@
     color: #d00;
     font-family: 'Porsche Next', sans-serif;
     margin-bottom: 20px;
+    position: relative;
+}
+
+.update-product-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: #d00;
+    margin: 10px auto 0;
 }
 
 .update-product-form {
@@ -35,6 +54,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: 'Porsche Next', sans-serif;
+    transition: border-color 0.3s;
 }
 
 .form-input:focus {
@@ -45,15 +65,16 @@
 .form-button {
     padding: 10px 20px;
     font-size: 1.2rem;
-    color: #fff;
-    background-color: #d00;
-    border: none;
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #d00;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
     font-family: 'Porsche Next', sans-serif;
 }
 
 .form-button:hover {
-    background-color: #a00;
+    background-color: #fdd;
+    color: #d00;
 }

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UnauthorizedAccess from './UnauthorizedAccess';
-import Cookies from 'js-cookie'; // Ensure this import is added
+import Cookies from 'js-cookie';
+import './styleViewAdminsReqs.css'; // Import the CSS file
 
 const ViewAdminsReqs = () => {
   const [collectionData, setCollectionData] = useState([]);
@@ -17,7 +18,7 @@ const ViewAdminsReqs = () => {
 
     const fetchCollection = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/v1/api/req'); // Replace with your API endpoint
+        const response = await axios.get('http://localhost:3001/v1/api/req');
         setCollectionData(response.data);
         setLoading(false);
       } catch (error) {
@@ -27,31 +28,31 @@ const ViewAdminsReqs = () => {
       }
     };
 
-    fetchCollection(); // This call should be inside the useEffect
-  }, []); // Closing bracket for useEffect
+    fetchCollection();
+  }, []);
 
   if (!isAuthorized) {
     return <UnauthorizedAccess />;
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="error">Error: {error}</div>;
   }
 
   return (
-    <div>
+    <div className="view-admins-reqs">
       <h2>Collection Data</h2>
       <ul>
         {collectionData.map((item, index) => (
-          <li key={index}>
-            <p><strong>ID:</strong> {item._id ? item._id.$oid : 'N/A'}</p> {/* Handling potential undefined */}
+          <li key={index} className="collection-item">
+            <p><strong>ID:</strong> {item._id ? item._id.$oid : 'N/A'}</p>
             <p><strong>Username:</strong> {item.username}</p>
             <p><strong>User ID:</strong> {item.userId}</p>
-            <p><strong>Created At:</strong> {item.createdAt ? item.createdAt.$date : 'N/A'}</p> {/* Handling potential undefined */}
+            <p><strong>Created At:</strong> {item.createdAt ? item.createdAt.$date : 'N/A'}</p>
           </li>
         ))}
       </ul>

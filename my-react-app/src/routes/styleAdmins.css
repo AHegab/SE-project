@@ -1,35 +1,74 @@
+
+body {
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  font-family: 'Porsche Next', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 .centered-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-  }
-  
-  h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 8px 12px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .Admins-page a:hover{
-    background-color: #b20b0b; 
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.centered-container h2 {
+  font-size: 2.5rem; /* Larger font size */
+  margin-bottom: 20px;
+  color: #d00; /* Porsche red */
+  position: relative;
+}
+
+.centered-container h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: #d00; /* Red underline */
+  margin: 10px auto 0;
+}
+
+.centered-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px; /* Space between the boxes */
+}
+
+.centered-container li {
+  flex: 1 1 calc(33.333% - 30px); /* Adjust width for 3 items per row with spacing */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  box-sizing: border-box; /* Ensure padding and border are included in the width/height */
+}
+
+.centered-container a {
+  text-decoration: none;
+  color: #000; /* Black text */
+  font-weight: bold;
+  padding: 10px 15px;
+  border: 2px solid #d00; /* Porsche red border */
+  border-radius: 5px;
+  background-color: #fff; /* White background */
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  display: block;
+  text-align: center;
+  width: 100%; /* Ensure links take up the full width of the list item */
+}
+
+.centered-container a:hover {
+  background-color: #e42727; /* Light red on hover */
+  color: #000; /* Black text */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.centered-container a:active {
+  transform: scale(0.95); /* Slightly shrink on click */
+}
