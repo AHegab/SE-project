@@ -41,6 +41,23 @@ const UpdateProduct = () => {
         }));
     };
 
+    const handleIncrementStock = () => {
+        setProductData((prevData) => ({
+            ...prevData,
+            stock: parseInt(prevData.stock) + 1
+        }));
+    };
+
+    const handleDecrementStock = () => {
+        const newStock = parseInt(productData.stock) - 1;
+        if (newStock >= 0) {
+            setProductData((prevData) => ({
+                ...prevData,
+                stock: newStock
+            }));
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -66,6 +83,8 @@ const UpdateProduct = () => {
                 <label>
                     Stock:
                     <input type="text" name="stock" value={productData.stock} onChange={handleChange} />
+                    <button type="button" onClick={handleIncrementStock}>+</button>
+                    <button type="button" onClick={handleDecrementStock}>-</button>
                 </label>
                 <label>
                     Color:
