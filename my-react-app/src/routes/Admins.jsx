@@ -15,6 +15,7 @@ const Admins = () => {
         <li><Link to="/Orders">Edit Orders</Link></li>
         <li><Link to="/admin/products">Update Products</Link></li>
         <li><Link to="/viewAdminsReqs">view Admins request </Link></li>
+        <li><Link to="/viewAllUsers">View All Users </Link></li>
       </ul>
     </div>
   );

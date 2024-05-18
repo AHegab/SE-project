@@ -1,66 +1,64 @@
+// src/App.jsx
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import './App.css';
-import Footer from './Footer.js';
-import Header from './Header.js';
+
+import Footer from './Footer';
+import Header from './Header';
 import ProductDetailPage from './routes/ProductDetailPage';
 import Home from './routes/Home';
 import Login from './routes/Login';
-
+import Profile from "./routes/UserProfile.jsx";
 import Product from './routes/Products';
 import ContactUs from './routes/ContactUs';
 import AddProduct from './routes/AddProduct';
 import Register from './routes/Register';
 import FeedbackList from './routes/FeedbackList';
 import UserProfile from './routes/UserProfile';
-import PlaceOrderPage from './routes/PlaceOrderPage'
-import Admins from './routes/Admins'
-import ViewAllOrders from './routes/ViewAllOrders'
-import PastOrders from './routes/PastOrders'
-import viewAdminsReqs from './routes/ViewAdminsReqs'
-import UserRoleUpdate from './routes/UserRoleUpdate'
+import PlaceOrderPage from './routes/PlaceOrderPage';
+import Admins from './routes/Admins';
+import ViewAllOrders from './routes/ViewAllOrders';
+import PastOrders from './routes/PastOrders';
+import viewAdminsReqs from './routes/ViewAdminsReqs';
+import UserRoleUpdate from './routes/UserRoleUpdate';
 import Orders from "./routes/Orders";
 import EditOrder from "./routes/EditOrder";
 import UpdateProduct from "./routes/UpdateProduct";
 import AdminUpdateProduct from './routes/AdminUpdateProduct';
 import AdminProductList from './routes/AdminProductList';
+import ViewAllUsers from './routes/ViewAllUsers'; // Import the new component
 
-
-const App = ()=> {
+const App = () => {
   return (
     <div>
-        <Router>
+      <Router>
         <Header />
-          
-            
-            <Routes>
-              <Route path='/' exact Component={Home}></Route>
-              <Route path='/login' exact Component={Login}></Route>
-              <Route path='/Product' exact Component={Product}></Route>
-              <Route path='/ContactUs' exact Component={ContactUs}></Route>
-              <Route path='/Register' exact Component={Register}></Route>
-              <Route path='/AddProduct' exact Component={AddProduct}></Route>
-              <Route path='/FeedbackList' exact Component={FeedbackList}></Route>
-              <Route path='/PlaceOrderPage' exact Component={PlaceOrderPage}></Route>
-              <Route path='/UserProfile' exact Component={UserProfile}></Route>
-              <Route path='/admin' exact Component={Admins}></Route>
-              <Route path='/ViewAllOrders' exact Component={ViewAllOrders}></Route>
-              <Route path='/PastOrders' exact Component={PastOrders}></Route>
-              <Route path='/viewAdminsReqs' exact Component={viewAdminsReqs}></Route>
-              <Route path='/UserRoleUpdate' exact Component={UserRoleUpdate}></Route>
-              <Route path="/product/:id" element={<ProductDetailPage />} />
-              <Route path='/Orders' exact Component={Orders}></Route>
-              <Route path='/update-products/:productId' element={<UpdateProduct />} />
-              <Route path="/edit-order/:orderId" element={<EditOrder />} />
-              <Route path='/admin/update-product/:productId' element={<AdminUpdateProduct />} />
-
-              <Route path='/admin/products' element={<AdminProductList />} />
-            </Routes>
-
-          <Footer />
-        </Router>
+        <Routes>
+          <Route path='/' exact Component={Home}></Route>
+          <Route path='/login' exact Component={Login}></Route>
+          <Route path='/Product' exact Component={Product}></Route>
+          <Route path='/ContactUs' exact Component={ContactUs}></Route>
+          <Route path='/Register' exact Component={Register}></Route>
+          <Route path='/AddProduct' exact Component={AddProduct}></Route>
+          <Route path='/FeedbackList' exact Component={FeedbackList}></Route>
+          <Route path='/PlaceOrderPage' exact Component={PlaceOrderPage}></Route>
+          <Route path='/UserProfile' exact Component={UserProfile}></Route>
+          <Route path='/admin' exact Component={Admins}></Route>
+          <Route path='/ViewAllOrders' exact Component={ViewAllOrders}></Route>
+          <Route path='/PastOrders' exact Component={PastOrders}></Route>
+          <Route path='/viewAdminsReqs' exact Component={viewAdminsReqs}></Route>
+          <Route path='/UserRoleUpdate' exact Component={UserRoleUpdate}></Route>
+          <Route path="/product/:id" element={<ProductDetailPage />} />
+          <Route path='/Orders' exact Component={Orders}></Route>
+          <Route path='/update-products/:productId' element={<UpdateProduct />} />
+          <Route path="/edit-order/:orderId" element={<EditOrder />} />
+          <Route path='/admin/update-product/:productId' element={<AdminUpdateProduct />} />
+          <Route path='/admin/products' element={<AdminProductList />} />
+          <Route path='/viewAllUsers' exact Component={ViewAllUsers}></Route> 
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }
 
-export default App;
+export default App;
