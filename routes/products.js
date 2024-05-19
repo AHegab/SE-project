@@ -102,10 +102,13 @@ module.exports = function(client) {
             // Add additional optional validations for other fields
         ], async (req, res) => {
             const productId = req.params.productId;
-            const updatedProductData = req.body;
-            const userRole = req.cookies.userInfo;
-        
-            if (userRole.role !== 'Admin') {
+            const updatedProductData = {...req.body};
+            delete updatedProductData._id;  // Remove the _id field from the data
+            updatedProductData.stock = parseInt(updatedProductData.stock);
+            updatedProductData.year = parseInt(updatedProductData.year);
+            updatedProductData.price = parseInt(updatedProductData.price);
+            const userRole = req.cookies.userInfo ? JSON.parse(req.cookies.userInfo).role : null;  
+            if (userRole !== 'Admin') {
                 return res.status(403).json({ message: 'User does not have access' });
             }
         
@@ -125,6 +128,7 @@ module.exports = function(client) {
                 res.status(500).json({ message: 'Internal server error' });
             }
         });
+        
         
         router.get('/Product/:id', async (req, res) => {
             const productId = req.params.id;
