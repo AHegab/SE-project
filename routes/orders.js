@@ -118,14 +118,24 @@ module.exports = function(client) {
         }
     
         const orderId = req.params.orderId;
-        const updatedOrderData = {
-            ...req.body,
-            userId: req.body.userId ? mongoose.Types.ObjectId(req.body.userId) : undefined,
-            productIds: req.body.productIds ? req.body.productIds.map(id => mongoose.Types.ObjectId(id)) : undefined,
-            datetime: req.body.datetime ? new Date(req.body.datetime) : undefined,
-        };
     
         try {
+            // Fetch the existing order
+            const existingOrder = await client.db('Porsche').collection('Orders').findOne({ _id: new mongoose.Types.ObjectId(orderId) });
+            if (!existingOrder) {
+                return res.status(404).json({ message: 'Order not found' });
+            }
+    
+            // Prepare updated order data
+            const updatedOrderData = {
+                ...existingOrder,
+                ...req.body,
+                userId: req.body.userId ? new mongoose.Types.ObjectId(req.body.userId) : existingOrder.userId,
+                productIds: req.body.productIds ? req.body.productIds.map(id => new mongoose.Types.ObjectId(id)) : existingOrder.productIds,
+                datetime: req.body.datetime ? new Date(req.body.datetime) : existingOrder.datetime,
+            };
+    
+            // Perform the update
             const result = await client.db('Porsche').collection('Orders').updateOne(
                 { "_id": new mongoose.Types.ObjectId(orderId) },
                 { $set: updatedOrderData }
@@ -141,7 +151,6 @@ module.exports = function(client) {
             res.status(500).json({ message: 'Internal server error' });
         }
     });
-    
     
 
     routerOrder.post('/addOrder', [
