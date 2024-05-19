@@ -66,13 +66,12 @@ const PlaceOrderPage = () => {
         try {
             const { userId } = userInfo;
             const response2 = await axios.get(`http://localhost:3001/v1/api/cart/user/${userInfo.userId}`, { withCredentials: true });
-            const response = await axios.post('http://localhost:3001/v1/api/Order', {
-                userId: userId,
-                productIds: cart,
-                datetime: new Date().toISOString(),
-                notes: notes,
-                total: totalPrice
-            }, { withCredentials: true });
+            const response = await axios.post('http://localhost:3001/v1/api/addOrder', {
+            userId: userId,
+             productIds: cart,
+            datetime: new Date().toISOString(),
+            notes: notes,
+            total: totalPrice}, { withCredentials: true });
 
             if (response.status === 201 || response.status === 200) {
                 alert('Order placed successfully!');

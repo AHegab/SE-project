@@ -7,6 +7,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 
+const { body, validationResult } = require('express-validator');
 
 const router = express.Router();
 router.use(express.json());
@@ -36,43 +37,34 @@ module.exports = function(client) {
         
         router.use('/Product',express.static("./my-react-app/public/CarImages"))
 
-        router.post('/Product', upload.array('images', 10), async (req, res) => {
+
+        router.post('/Product', upload.array('images', 10), [
+            body('category').isIn(['Sport', 'SUV', 'Sedan', 'Convertible', 'Hatchback']).withMessage('Invalid category'),
+            body('stock').isInt({ min: 0 }).withMessage('Stock must be a non-negative integer'),
+            body('color').isString().withMessage('Color must be a string'),
+            body('gear').isString().withMessage('Gear must be a string'),
+            body('make').isString().withMessage('Make must be a string'),
+            body('model').isString().withMessage('Model must be a string'),
+            body('name').isString().withMessage('Name must be a string'),
+            body('year').isInt({ min: 1900, max: 2100 }).withMessage('Year must be between 1900 and 2100'),
+            body('imageLink').isURL().withMessage('Image link must be a valid URL'),
+            body('price').isInt({ min: 0 }).withMessage('Price must be a non-negative integer')
+        ], async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+        
+            const imagePaths = req.files.map(file => file.path);
+        
+            const { category, stock, color, gear, make, model, name, year, imageLink, price } = req.body;
+            const product = {
+                category, stock, color, gear, make, model, name, year, imageLink, imagePaths, price
+            };
+        
             try {
-                const db = client.db('Porsche');
-                
-                // Array to store image paths
-                const imagePaths = [];
-                
-                // Iterate through each uploaded file
-                for (const file of req.files) {
-                    const filename = file.originalname;
-                    const filePath = file.path;
-        
-                    // Push the file path to the imagePaths array
-                    imagePaths.push(filePath);
-        
-                    // Optionally, you can perform other operations with the uploaded files here
-                }
-        
-                // Extract product data from request body
-                const { category, stock, color, gear, make, model, name, year,imageLink } = req.body;
-        
-                // Insert product data and image paths into the database
-                const result = await db.collection('Products').insertOne({
-                    category: category,
-                    stock: stock,
-                    color: color,
-                    gear: gear,
-                    make: make,
-                    model: model,
-                    name: name,
-                    year: year,
-                    imageLink:imageLink,
-                    imagePaths: imagePaths
-                });
-        
-                
-                    res.status(200).json({ message: 'Product and files uploaded successfully', imagePaths: imagePaths });
+                const result = await client.db('Porsche').collection('Products').insertOne(product);
+                res.status(201).json({ message: 'Product and files uploaded successfully', productId: result.insertedId });
             } catch (error) {
                 console.error('Error uploading product and files:', error);
                 res.status(500).json({ message: 'Internal server error' });
@@ -80,117 +72,107 @@ module.exports = function(client) {
         });
         
         
+    
         
+        router.delete('/Product/:productId', async (req, res) => {
+            const productId = req.params.productId;
+            const userRole = req.cookies.info;
         
-        
-        
-        
-        
-        
-
-    router.delete('/Product/:productId', async (req, res) => {
-
-        const productId = req.params.productId;
-        const userRole=req.cookies.info;
-        if(userRole.role!='Admin')
-            {
-                return res.status(403).json('User does not have access');
+            if (userRole.role !== 'Admin') {
+                return res.status(403).json({ message: 'User does not have access' });
             }
-    
-        try {
-            
-            const result =await client.db('Porsche').collection('Products').deleteOne({  _id:new mongoose.Types.ObjectId(req.params.productId)  });
-    
-            if (result.deletedCount === 1) {
-                res.status(200).json({ message: 'Product deleted successfully' });
-            } else {
-                res.status(404).json({ message: 'Product not found' });
-            }
-        } catch (error) {
-            console.error('Error deleting product:', error);
-            res.status(500).json({ message: 'Internal server error' });
-        } finally {
-            // Close the MongoDB connection
-            await client.close();
-        }
-    });
-    
-    
-    router.put('/Product/:productId', async (req, res) => {
-        const productId = req.params.productId;
-        const updatedProductData = req.body;
-        const userRole = req.cookies.userInfo;
-    
-       
-        // Remove the _id field from updatedProductData if it exists
-        if (updatedProductData._id) {
-            delete updatedProductData._id;
-        }
-    
-        try {
-            const result = await client.db('Porsche').collection('Products').updateOne(
-                { _id: new mongoose.Types.ObjectId(productId) },
-                { $set: updatedProductData }
-            );
-    
-            if (result.matchedCount === 1) {
-                res.status(200).json({ message: 'Product updated successfully' });
-            } else {
-                res.status(404).json({ message: 'Product not found' });
-            }
-        } catch (error) {
-            console.error('Error updating product:', error);
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    });
-    router.get('/Product/:id', async (req, res) => {
-        const productId = req.params.id;
-    
-        try {
-            // Fetch product details by ID
-            const product = await client.db('Porsche').collection('Products').findOne({ _id: new ObjectId(productId) });
-    
-            if (!product) {
-                return res.status(404).json({ message: 'Product not found' });
-            }
-            
-            
-                res.status(200).json(product);
-            
-            
-        } catch (error) {
-            console.error('Error retrieving product:', error);
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    });
-
-    router.get('/product/:imagePath', (req, res) => {
-        const imagePath = req.params.imagePath;
-        // Construct the absolute path to the image file
-        const imagePathAbsolute = path.join(__dirname, 'my-react-app', 'public', 'CarImages', imagePath);
         
-        // Send the image file as the response
-        res.sendFile(imagePathAbsolute, (err) => {
-            if (err) {
-                // Handle errors such as file not found
-                console.error('Error sending file:', err);
-                res.status(404).send('Image not found');
+            try {
+                const result = await client.db('Porsche').collection('Products').deleteOne({ _id: new ObjectId(productId) });
+        
+                if (result.deletedCount === 0) {
+                    res.status(404).json({ message: 'Product not found' });
+                } else {
+                    res.status(200).json({ message: 'Product deleted successfully' });
+                }
+            } catch (error) {
+                console.error('Error deleting product:', error);
+                res.status(500).json({ message: 'Internal server error' });
             }
         });
-    });
-
-
-    router.get('/Product', async (req, res) => {
-        const product = await client.db('Porsche').collection('Products').find({}).toArray();
-        res.json(product);
-    });
-
-    // Define other route handlers here...
-
-   
+        
     
-    
-    // Define other route handlers here...
+        router.put('/Product/:productId', [
+            body('category').optional().isIn(['Sport', 'SUV', 'Sedan', 'Convertible', 'Hatchback']).withMessage('Invalid category'),
+            // Add additional optional validations for other fields
+        ], async (req, res) => {
+            const productId = req.params.productId;
+            const updatedProductData = req.body;
+            const userRole = req.cookies.userInfo;
+        
+            if (userRole.role !== 'Admin') {
+                return res.status(403).json({ message: 'User does not have access' });
+            }
+        
+            try {
+                const result = await client.db('Porsche').collection('Products').updateOne(
+                    { _id: new ObjectId(productId) },
+                    { $set: updatedProductData }
+                );
+        
+                if (result.matchedCount === 0) {
+                    res.status(404).json({ message: 'Product not found' });
+                } else {
+                    res.status(200).json({ message: 'Product updated successfully' });
+                }
+            } catch (error) {
+                console.error('Error updating product:', error);
+                res.status(500).json({ message: 'Internal server error' });
+            }
+        });
+        
+        router.get('/Product/:id', async (req, res) => {
+            const productId = req.params.id;
+            try {
+                const product = await client.db('Porsche').collection('Products').findOne({ _id: new ObjectId(productId) });
+                if (!product) {
+                    return res.status(404).json({ message: 'Product not found' });
+                }
+                res.status(200).json(product);
+            } catch (error) {
+                console.error('Error retrieving product:', error);
+                if (error.name === 'BSONTypeError') {
+                    res.status(400).json({ message: 'Invalid product ID format' });
+                } else {
+                    res.status(500).json({ message: 'Internal server error' });
+                }
+            }
+        });
+        
+
+        router.get('/product/:imagePath', (req, res) => {
+            const imagePath = req.params.imagePath;
+            const imagePathAbsolute = path.join(__dirname, 'my-react-app', 'public', 'CarImages', imagePath);
+        
+            res.sendFile(imagePathAbsolute, (err) => {
+                if (err) {
+                    console.error('Error sending file:', err);
+                    if (err.code === 'ENOENT') {
+                        res.status(404).send('Image not found');
+                    } else {
+                        res.status(500).send('Internal server error');
+                    }
+                }
+            });
+        });
+        
+
+        router.get('/Product', async (req, res) => {
+            try {
+                const products = await client.db('Porsche').collection('Products').find({}).toArray();
+                res.json(products);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                res.status(500).json({ message: 'Internal server error' });
+            }
+        });
+        
+
 
     return router;
 };

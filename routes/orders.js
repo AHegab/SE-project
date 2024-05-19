@@ -84,6 +84,7 @@ module.exports = function(client) {
         }
     
         const { userId, productIds, datetime, notes, total } = req.body;
+       
         const order = {
             userId: new mongoose.Types.ObjectId(userId), // Correct usage with Mongoose
             productIds: productIds.map(id => new mongoose.Types.ObjectId(id)), // Convert each product ID
@@ -91,7 +92,6 @@ module.exports = function(client) {
             notes,
             total
         };
-        
         try {
             const newOrder = await client.db('Porsche').collection('Orders').insertOne(order);
             res.status(201).json({ message: 'Order created successfully', order: newOrder });
@@ -144,44 +144,41 @@ module.exports = function(client) {
     
     
 
-routerOrder.post('/Order', async (req, res) => {
-    try {
-        // Request body contains order data
-        const orderData = req.body;
-        await client.connect();
-
-        const db = client.db(dbName);
-        const collection = db.collection(collectionOrder);
-
-        // Insert order into the database
-        const result = await collection.insertOne(orderData);
-
-        // Update stock in the Product collection for each product in the order
-        const productIds = orderData.productIds;
-        console.log(productIds)
-        const productCollection = db.collection('Products');
-
-        for (const productId of productIds) {
-            console.log(`pIDS:${productId}`)
-            const product = await productCollection.findOne({ _id: new ObjectId(productId) });
-            if (product) {
-                await productCollection.updateOne(
-                    { _id: new ObjectId(productId) },
-                    { $set: { stock : parseInt(product.stock) - 1 } } // Decrement stock by 1
-                );
-            }
+    routerOrder.post('/addOrder', [
+        body('userId').isMongoId().withMessage('User ID must be a valid MongoDB ObjectId'),
+        body('productIds').isArray({ min: 1 }).withMessage('At least one product ID is required')
+            .custom(productIds => productIds.every(id => ObjectId.isValid(id)))
+            .withMessage('All product IDs must be valid MongoDB ObjectIds'),
+        body('datetime').isISO8601().withMessage('Datetime must be a valid ISO 8601 date'),
+        body('notes').isString().withMessage('Notes must be a string'),
+        body('total').isInt({ min: 0 }).withMessage('Total must be a non-negative integer'),
+    ], async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
         }
-
-        // Send response
-        res.status(201).json({ message: 'Order added successfully', orderId: result.insertedId });
-    } catch (error) {
-        console.error('Error adding order:', error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-});
-
-
-
+    
+        const { userId, productIds, datetime, notes, total } = req.body;
+        const order = {
+            userId: new mongoose.Types.ObjectId(userId),
+            productIds: productIds.map(id => new mongoose.Types.ObjectId(id)),
+            datetime: new Date(datetime),
+            notes,
+            total
+        };
+    
+        console.log("Final order object:", order);  // Debugging line
+    
+        try {
+            const newOrder = await client.db('Porsche').collection('Orders').insertOne(order);
+            res.status(201).json({ message: 'Order created successfully', order: newOrder });
+        } catch (error) {
+            console.error('Error creating order:', error);
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    });
+    
+    
 // DELETE Order
 routerOrder.delete('/Order/:orderId', async (req, res) => {
     const orderId = req.params.orderId;
