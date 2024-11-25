@@ -14,7 +14,10 @@ const productsRouter = require('./routes/products');
 const ordersRouter = require('./routes/orders');
 const loginRouter = require('./routes/login');
 const usersRouter = require('./routes/users');
-
+const feedbackRouter = require('./routes/feedback');
+const cartRouter = require('./routes/cart');
+const requestRouter = require('./routes/request');  // Import the requestRouter
+const { body, validationResult } = require('express-validator');
 const dbString = process.env.DB_STRING;
 const client = new MongoClient(dbString);
 
@@ -29,17 +32,23 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(express.static('views/', { root: __dirname }));
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(express.static('public/Main/', { root: __dirname }));
+app.use('/public', express.static('my-react-app/public'));
+app.use('/public', express.static('my-react-app/public'));
 
 app.set('view engine', 'ejs');
 
 app.use('/v1/api', productsRouter(client));
 app.use('/v1/api', ordersRouter(client));
-app.use('/', loginRouter(client));  // Ensure the correct path is used here
+app.use('/', loginRouter(client));
 app.use('/v1/api', usersRouter(client));
+app.use('/v1/api', feedbackRouter(client));
+app.use('/v1/api', cartRouter(client));
+app.use('/v1/api', requestRouter(client));  // Use the requestRouter
 
 mongoose.connect(dbString)
     .then(() => {
@@ -107,33 +116,48 @@ app.get('/register', (req, res) => {
     res.render('register', { userId });
 });
 
-app.post('/register', async (req, res) => {
+app.post('/register', [
+    body('username').isString().notEmpty(),
+    body('password').isString().notEmpty(),
+    body('address').isString().notEmpty(),
+    body('city').isString().notEmpty(),
+    body('region').isString().notEmpty(),
+    body('zip').isString().notEmpty(),
+    body('dob').isISO8601().toDate(),
+    body('email').isEmail()
+], async (req, res) => {
     try {
-        const { username, password, address, city, region, role, zip, dob } = req.body;
-        const db = client.db('Porsche');
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        const { username, password, address, city, region, zip, dob, email } = req.body;
+
+        const db = mongoose.connection;
         const collection = db.collection('Users');
 
         const existingUser = await collection.findOne({ username });
         if (existingUser) {
-            return res.status(400).send("Username already exists");
+            return res.status(400).json({ message: "Username already exists" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
+
         await collection.insertOne({
             username,
+            email,
             password: hashedPassword,
             address,
             city,
             region,
-            role,
             zip,
             dob
         });
 
-        res.status(201).render('login');
-        console.log(`Message from the server: ${username} registered successfully`);
+        res.status(201).json({ message: `${username} registered successfully` });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        res.status(500).json({ message: "Internal Server Error" });
     }
 });

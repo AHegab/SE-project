@@ -1,0 +1,70 @@
+
+
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Porsche Next', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.view-admins-reqs {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.view-admins-reqs h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #d00;
+    font-family: 'Porsche Next', sans-serif;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.view-admins-reqs h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: #d00;
+    margin: 10px auto 0;
+}
+
+.loading, .error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #d00;
+}
+
+.view-admins-reqs ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.collection-item {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.collection-item:hover {
+    transform: scale(1.02);
+}
+
+.collection-item p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.collection-item strong {
+    color: #d00;
+}
